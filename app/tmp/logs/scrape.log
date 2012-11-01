@@ -1,0 +1,430 @@
+2012-10-30 21:37:08 Scrape: Processing feed file:///Users/dmertl/dev/personal/AudioHarvest/app/Test/Fixtures/feed.xml.
+2012-10-30 21:38:34 Scrape: Processing feed file:///Users/dmertl/dev/personal/AudioHarvest/app/Test/Fixtures/feed.xml.
+2012-10-30 21:40:53 Scrape: Processing feed file:///Users/dmertl/dev/personal/AudioHarvest/app/Test/Fixtures/feed.xml.
+2012-10-30 21:42:31 Scrape: Processing feed file:///Users/dmertl/dev/personal/AudioHarvest/app/Test/Fixtures/feed.xml.
+2012-10-30 21:47:11 Scrape: Processing feed test.
+2012-10-30 21:56:02 Scrape: Processing feed http://www.google.com/asdf.
+2012-10-30 21:56:38 Scrape: Processing feed http://www.google.com/asdf.
+2012-10-30 21:57:33 Scrape: Processing feed http://www.google.com/asdf.
+2012-10-30 22:08:42 Scrape: Processing feed test.
+2012-10-30 22:09:01 Scrape: Processing feed test.
+2012-10-30 22:09:01 Scrape: Processing feed test.
+2012-10-30 22:09:01 Scrape: Processing feed test.
+2012-10-30 22:09:34 Scrape: Processing feed test.
+2012-10-30 22:09:34 Scrape: Processing feed test.
+2012-10-30 22:09:52 Scrape: Processing feed test.
+2012-10-30 22:10:14 Scrape: Processing feed test.
+2012-10-30 22:13:45 Scrape: Processing feed test.
+2012-10-30 22:13:56 Scrape: Processing feed test.
+2012-10-30 22:14:11 Scrape: Processing feed test.
+2012-10-30 22:14:11 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:65
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(39): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:14:11 Scrape: Processing feed test.
+2012-10-30 22:14:25 Scrape: Processing feed test.
+2012-10-30 22:14:25 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:67
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(39): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:14:25 Scrape: Processing feed test.
+2012-10-30 22:21:18 Scrape: Processing feed test.
+2012-10-30 22:21:18 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:75
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:21:18 Scrape: Processing feed test.
+2012-10-30 22:23:00 Scrape: Processing feed test.
+2012-10-30 22:23:00 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:75
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:23:42 Scrape: Processing feed test.
+2012-10-30 22:24:05 Scrape: Processing feed test.
+2012-10-30 22:24:07 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:75
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:24:30 Scrape: Processing feed test.
+2012-10-30 22:24:32 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:75
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:27:57 Scrape: Processing feed test.
+2012-10-30 22:27:57 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:77
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:28:47 Scrape: Processing feed test.
+2012-10-30 22:28:47 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:77
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:31:19 Scrape: Processing feed test.
+2012-10-30 22:31:19 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:77
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:32:00 Scrape: Processing feed test.
+2012-10-30 22:32:00 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:77
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:33:22 Scrape: Processing feed test.
+2012-10-30 22:33:22 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:77
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:34:39 Scrape: Processing feed test.
+2012-10-30 22:44:16 Scrape: Processing feed test.
+2012-10-30 22:44:16 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:77
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:44:43 Scrape: Processing feed test.
+2012-10-30 22:45:19 Scrape: Processing feed test.
+2012-10-30 22:45:19 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:77
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:45:23 Scrape: Processing feed test.
+2012-10-30 22:46:02 Scrape: Processing feed test.
+2012-10-30 22:46:02 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:77
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:46:05 Scrape: Processing feed test.
+2012-10-30 22:48:13 Scrape: Processing feed test.
+2012-10-30 22:48:13 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:77
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:48:13 Scrape: Processing feed test.
+2012-10-30 22:49:05 Scrape: Processing feed test.
+2012-10-30 22:49:05 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:79
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:49:05 Scrape: Processing feed test.
+2012-10-30 22:49:13 Scrape: Processing feed test.
+2012-10-30 22:49:13 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:79
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:49:13 Scrape: Processing feed test.
+2012-10-30 22:49:37 Scrape: Processing feed test.
+2012-10-30 22:49:37 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:77
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(40): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-10-30 22:49:37 Scrape: Processing feed test.
+2012-11-01 00:31:32 Scrape: Processing feed test.
+2012-11-01 00:31:32 Scrape: Unable to get feed link test exception 'FeedResponseException' in /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php:78
+Stack trace:
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php(51): TestFeed->getFeedLinkContent('test')
+#1 /Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php(41): Feed->scrape(Array)
+#2 [internal function]: FeedTest->testScrapeWithNon200Response()
+#3 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(942): ReflectionMethod->invokeArgs(Object(FeedTest), Array)
+#4 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(804): PHPUnit_Framework_TestCase->runTest()
+#5 /opt/local/lib/php/pear/PHPUnit/Framework/TestResult.php(649): PHPUnit_Framework_TestCase->runBare()
+#6 /opt/local/lib/php/pear/PHPUnit/Framework/TestCase.php(751): PHPUnit_Framework_TestResult->run(Object(FeedTest))
+#7 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestCase.php(78): PHPUnit_Framework_TestCase->run(Object(PHPUnit_Framework_TestResult))
+#8 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(772): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#9 /opt/local/lib/php/pear/PHPUnit/Framework/TestSuite.php(745): PHPUnit_Framework_TestSuite->runTest(Object(FeedTest), Object(PHPUnit_Framework_TestResult))
+#10 /opt/local/lib/php/pear/PHPUnit/TextUI/TestRunner.php(325): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#11 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestRunner.php(57): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#12 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteCommand.php(111): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#13 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(242): CakeTestSuiteCommand->run(Array)
+#14 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(99): CakeTestSuiteDispatcher->_runTestCase()
+#15 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(116): CakeTestSuiteDispatcher->dispatch()
+#16 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/test.php(92): CakeTestSuiteDispatcher::run()
+#17 {main}
+2012-11-01 00:31:32 Scrape: Processing feed test.

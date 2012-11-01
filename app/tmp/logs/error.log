@@ -1,0 +1,221 @@
+2012-10-25 21:56:22 Error: [MissingControllerException] Controller class Favicon.icoController could not be found.
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-25 21:56:49 Error: [MissingControllerException] Controller class PhpStorm-c8247970-2752-45c4-b511-e46108358c74.phpController could not be found.
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-25 21:58:21 Error: [MissingControllerException] Controller class Favicon.icoController could not be found.
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-25 22:01:06 Error: [MissingControllerException] Controller class Favicon.icoController could not be found.
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-25 23:04:28 Error: Fatal Error (1): Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure() in [/Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/Reporter/CakeHtmlReporter.php, line 252]
+2012-10-25 23:04:28 Error: [FatalErrorException] Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure()
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/Users/dmertl/d...', 252)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/Users/dmertl/d...', 252, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/Users/dmertl/d...', 252, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-25 23:04:28 Error: [MissingControllerException] Controller class Favicon.icoController could not be found.
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-25 23:08:21 Error: Fatal Error (1): Class 'getID3' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Mp3.php, line 47]
+2012-10-25 23:08:21 Error: [FatalErrorException] Class 'getID3' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-25 23:08:30 Error: Fatal Error (1): Class 'getID3' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Mp3.php, line 47]
+2012-10-25 23:08:30 Error: [FatalErrorException] Class 'getID3' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-25 23:08:37 Error: Fatal Error (1): Class 'getID3' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Mp3.php, line 47]
+2012-10-25 23:08:37 Error: [FatalErrorException] Class 'getID3' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-25 23:08:47 Error: Fatal Error (1): Class 'getID3' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Mp3.php, line 47]
+2012-10-25 23:08:47 Error: [FatalErrorException] Class 'getID3' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-25 23:10:59 Error: Fatal Error (1): Class 'getID3' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Mp3.php, line 47]
+2012-10-25 23:10:59 Error: [FatalErrorException] Class 'getID3' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-25 23:11:14 Error: Fatal Error (1): Class 'getID3' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Mp3.php, line 47]
+2012-10-25 23:11:14 Error: [FatalErrorException] Class 'getID3' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'getID3' ...', '/Users/dmertl/d...', 47, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-25 23:12:43 Error: Fatal Error (1): Class 'getID3' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Mp3.php, line 48]
+2012-10-25 23:12:43 Error: [FatalErrorException] Class 'getID3' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'getID3' ...', '/Users/dmertl/d...', 48)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'getID3' ...', '/Users/dmertl/d...', 48, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'getID3' ...', '/Users/dmertl/d...', 48, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 21:07:08 Error: Fatal Error (1): Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure() in [/Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/Reporter/CakeHtmlReporter.php, line 252]
+2012-10-30 21:07:08 Error: [FatalErrorException] Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure()
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/Users/dmertl/d...', 252)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/Users/dmertl/d...', 252, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/Users/dmertl/d...', 252, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 21:07:08 Error: [MissingControllerException] Controller class Favicon.icoController could not be found.
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-30 21:07:40 Error: Fatal Error (1): Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure() in [/Users/dmertl/dev/personal/AudioHarvest/lib/Cake/TestSuite/Reporter/CakeHtmlReporter.php, line 252]
+2012-10-30 21:07:40 Error: [FatalErrorException] Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure()
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/Users/dmertl/d...', 252)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/Users/dmertl/d...', 252, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/Users/dmertl/d...', 252, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 21:07:40 Error: [MissingControllerException] Controller class Favicon.icoController could not be found.
+#0 /Users/dmertl/dev/personal/AudioHarvest/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-30 21:30:46 Error: Fatal Error (1): Class 'Shell' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php, line 87]
+2012-10-30 21:30:46 Error: [FatalErrorException] Class 'Shell' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'Shell' n...', '/Users/dmertl/d...', 87)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Shell' n...', '/Users/dmertl/d...', 87, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Shell' n...', '/Users/dmertl/d...', 87, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 21:37:08 Error: Fatal Error (1): Call to a member function get() on a non-object in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php, line 40]
+2012-10-30 21:37:08 Error: Fatal Error (1): Call to a member function get() on a non-object in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php, line 40]
+2012-10-30 21:37:08 Error: [FatalErrorException] Call to a member function get() on a non-object
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/Users/dmertl/d...', 40)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/Users/dmertl/d...', 40, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/Users/dmertl/d...', 40, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 21:37:08 Error: [FatalErrorException] Call to a member function get() on a non-object
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/Users/dmertl/d...', 40)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/Users/dmertl/d...', 40, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/Users/dmertl/d...', 40, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 21:37:36 Error: Fatal Error (1): Class 'HttpSocket' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php, line 38]
+2012-10-30 21:37:36 Error: [FatalErrorException] Class 'HttpSocket' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'HttpSock...', '/Users/dmertl/d...', 38)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'HttpSock...', '/Users/dmertl/d...', 38, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'HttpSock...', '/Users/dmertl/d...', 38, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 21:37:53 Error: Fatal Error (1): Class 'HttpSocket' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php, line 39]
+2012-10-30 21:37:53 Error: [FatalErrorException] Class 'HttpSocket' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'HttpSock...', '/Users/dmertl/d...', 39)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'HttpSock...', '/Users/dmertl/d...', 39, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'HttpSock...', '/Users/dmertl/d...', 39, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 21:38:13 Error: Fatal Error (1): Class 'HttpSocket' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php, line 39]
+2012-10-30 21:38:13 Error: [FatalErrorException] Class 'HttpSocket' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'HttpSock...', '/Users/dmertl/d...', 39)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'HttpSock...', '/Users/dmertl/d...', 39, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'HttpSock...', '/Users/dmertl/d...', 39, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 21:38:24 Error: Fatal Error (1): Class 'HttpSocket' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php, line 39]
+2012-10-30 21:38:24 Error: [FatalErrorException] Class 'HttpSocket' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'HttpSock...', '/Users/dmertl/d...', 39)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'HttpSock...', '/Users/dmertl/d...', 39, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'HttpSock...', '/Users/dmertl/d...', 39, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 22:08:42 Error: Fatal Error (1): Call to a member function save() on a non-object in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php, line 57]
+2012-10-30 22:08:42 Error: Fatal Error (1): Call to a member function save() on a non-object in [/Users/dmertl/dev/personal/AudioHarvest/app/Model/Feed.php, line 57]
+2012-10-30 22:08:42 Error: [FatalErrorException] Call to a member function save() on a non-object
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/Users/dmertl/d...', 57)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/Users/dmertl/d...', 57, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/Users/dmertl/d...', 57, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 22:08:42 Error: [FatalErrorException] Call to a member function save() on a non-object
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/Users/dmertl/d...', 57)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/Users/dmertl/d...', 57, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/Users/dmertl/d...', 57, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 22:10:14 Error: Fatal Error (1): Class 'HttpResponseException' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php, line 65]
+2012-10-30 22:10:14 Error: Fatal Error (1): Class 'HttpResponseException' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php, line 65]
+2012-10-30 22:10:14 Error: [FatalErrorException] Class 'HttpResponseException' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'HttpResp...', '/Users/dmertl/d...', 65)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'HttpResp...', '/Users/dmertl/d...', 65, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'HttpResp...', '/Users/dmertl/d...', 65, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 22:10:14 Error: [FatalErrorException] Class 'HttpResponseException' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'HttpResp...', '/Users/dmertl/d...', 65)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'HttpResp...', '/Users/dmertl/d...', 65, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'HttpResp...', '/Users/dmertl/d...', 65, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 22:13:45 Error: Fatal Error (1): Class 'HttpResponseException' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php, line 65]
+2012-10-30 22:13:45 Error: Fatal Error (1): Class 'HttpResponseException' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php, line 65]
+2012-10-30 22:13:45 Error: [FatalErrorException] Class 'HttpResponseException' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'HttpResp...', '/Users/dmertl/d...', 65)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'HttpResp...', '/Users/dmertl/d...', 65, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'HttpResp...', '/Users/dmertl/d...', 65, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 22:13:45 Error: [FatalErrorException] Class 'HttpResponseException' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'HttpResp...', '/Users/dmertl/d...', 65)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'HttpResp...', '/Users/dmertl/d...', 65, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'HttpResp...', '/Users/dmertl/d...', 65, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 22:13:56 Error: Fatal Error (1): Class 'FeedResponseException' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php, line 65]
+2012-10-30 22:13:56 Error: Fatal Error (1): Class 'FeedResponseException' not found in [/Users/dmertl/dev/personal/AudioHarvest/app/Test/Case/Model/FeedTest.php, line 65]
+2012-10-30 22:13:56 Error: [FatalErrorException] Class 'FeedResponseException' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'FeedResp...', '/Users/dmertl/d...', 65)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'FeedResp...', '/Users/dmertl/d...', 65, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'FeedResp...', '/Users/dmertl/d...', 65, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-30 22:13:56 Error: [FatalErrorException] Class 'FeedResponseException' not found
+#0 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'FeedResp...', '/Users/dmertl/d...', 65)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'FeedResp...', '/Users/dmertl/d...', 65, Array)
+#2 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'FeedResp...', '/Users/dmertl/d...', 65, Array)
+#3 /Users/dmertl/dev/personal/AudioHarvest/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
