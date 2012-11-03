@@ -10,14 +10,13 @@ class FeedTest extends CakeTestCase {
 
 	public $fixtures = array(
 		'app.feed',
-		'app.feed_item'
+		'app.feed_item',
+		'app.link'
 	);
 
 	public function setUp() {
 		parent::setUp();
 		$this->Feed = ClassRegistry::init('TestFeed');
-		$this->Feed->FeedItem = ClassRegistry::init('FeedItem');
-		$this->Feed->FeedItem->Link = ClassRegistry::init('Link');
 	}
 
 	public function tearDown() {
@@ -64,8 +63,15 @@ class FeedTest extends CakeTestCase {
 		$this->assertWithinMargin($actual, $expected, 1, 'last_scraped was not updated.');
 	}
 
-	public function testScrapeExistingLink() {
-		//Test scraping an existing link does not create a duplicate record
+	public function testScrapeExistingLinkDoesNotCreateDuplicate() {
+		$xml = $this->getSampleFeed(array(array('title' => 'test', 'link' => 'Lorem ipsum dolor sit amet')));
+		$this->Feed->testResponse = $xml;
+		$this->Feed->scrape(array('Feed' => array('id' => 1, 'link' => 'test')));
+		$actual = $this->Feed->FeedItem->find('all');
+		$this->assertEqual(count($actual), 1);
+		$expected = time();
+		$actual = strtotime($this->Feed->field('last_scraped', array('id' => 1)));
+		$this->assertWithinMargin($actual, $expected, 1, 'last_scraped was not updated.');
 	}
 
 	public function testScrapeNoItems() {
@@ -74,7 +80,6 @@ class FeedTest extends CakeTestCase {
 		$this->Feed->testResponse = $xml;
 		$this->Feed->scrape(array('Feed' => array('id' => 1, 'link' => 'test')));
 		$actual = $this->Feed->FeedItem->find('all');
-		var_dump($actual);
 		$this->assertEqual(empty($actual), true);
 		$expected = time();
 		$actual = strtotime($this->Feed->field('last_scraped', array('id' => 1)));
@@ -86,7 +91,7 @@ class FeedTest extends CakeTestCase {
 		$xml = $this->getSampleFeed(array(array('link' => 'http://www.example.com/')));
 		$this->Feed->testResponse = $xml;
 		$this->Feed->scrape(array('Feed' => array('id' => 1, 'link' => 'test')));
-		$actual = $this->Feed->find('all');
+		$actual = $this->Feed->FeedItem->find('all');
 		$this->assertEqual(empty($actual), true);
 		$expected = time();
 		$actual = strtotime($this->Feed->field('last_scraped', array('id' => 1)));
@@ -98,7 +103,7 @@ class FeedTest extends CakeTestCase {
 		$xml = $this->getSampleFeed(array(array('title' => 'Test Title')));
 		$this->Feed->testResponse = $xml;
 		$this->Feed->scrape(array('Feed' => array('id' => 1, 'link' => 'test')));
-		$actual = $this->Feed->find('all');
+		$actual = $this->Feed->FeedItem->find('all');
 		$this->assertEqual(empty($actual), true);
 		$expected = time();
 		$actual = strtotime($this->Feed->field('last_scraped', array('id' => 1)));

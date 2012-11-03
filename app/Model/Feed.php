@@ -47,7 +47,6 @@ class Feed extends AppModel {
 
 	/**
 	 * Scrape a feed and create FeedItem records
-	 * TODO: check if feed item already exists
 	 * @param array $feed Feed
 	 */
 	public function scrape($feed) {
@@ -58,7 +57,7 @@ class Feed extends AppModel {
 				if(!empty($feed_xml->channel->item)) {
 					foreach($feed_xml->channel->item as $item) {
 						if($feed_item = $this->rssItemToFeedItem($item, $feed)) {
-							if(!$this->FeedItem->find('count', array('conditions' => array('link' => $feed['FeedItem']['link'])))) {
+							if(!$this->FeedItem->find('count', array('conditions' => array('FeedItem.link' => $feed_item['FeedItem']['link'])))) {
 								$this->saveFeedItem($feed_item);
 							}
 						}
@@ -151,8 +150,8 @@ class Feed extends AppModel {
 	 * @throws FeedResponseException
 	 */
 	protected function saveFeedItem($feed_item) {
-		$this->Feed->FeedItem->create();
-		if(!$this->Feed->FeedItem->save($feed_item)) {
+		$this->FeedItem->create();
+		if(!$this->FeedItem->save($feed_item)) {
 			throw new FeedResponseException('Unable to save feed item: ' . json_encode($feed_item));
 		}
 	}

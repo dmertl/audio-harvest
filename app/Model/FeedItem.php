@@ -31,8 +31,8 @@ class FeedItem extends AppModel {
 	/* @var array */
 	protected $blacklist;
 
-	public function __construct() {
-		parent::__construct();
+	public function __construct($id = false, $table = null, $ds = null) {
+		parent::__construct($id, $table, $ds);
 		if($blacklist = Configure::read('FeedItem.blacklist')) {
 			$this->blacklist = $blacklist;
 		}
