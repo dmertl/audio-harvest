@@ -36,6 +36,9 @@ class Feed extends AppModel {
 		));
 	}
 
+	/**
+	 * Scrape all feeds
+	 */
 	public function scrapeAll() {
 		$feeds = $this->find('all', array('order' => 'last_scraped', 'recursive' => -1));
 		CakeLog::write('scrape', 'Processing ' . count($feeds) . ' feeds.');
@@ -98,12 +101,14 @@ class Feed extends AppModel {
 	 * @throws FeedResponseException
 	 */
 	protected function toXmlSafe($string) {
-		libxml_use_internal_errors();
+		libxml_use_internal_errors(true);
 		try {
 			if($xml = new SimpleXMLElement(trim($string))) {
 				return $xml;
 			} else {
-				throw new FeedResponseException('Unable to parse feed: ' . json_encode(libxml_get_errors()) . ' Content:' . $string);
+				$error_string = json_encode(libxml_get_errors());
+				libxml_clear_errors();
+				throw new FeedResponseException('Unable to parse feed: ' . $error_string . ' Content:' . $string);
 			}
 		} catch(Exception $e) {
 			throw new FeedResponseException($e->getMessage(), $e->getCode(), $e);

@@ -34,6 +34,12 @@ class FeedFixture extends CakeTestFixture {
 			'link' => 'Lorem ipsum dolor sit amet',
 			'last_scraped' => '2012-10-25 22:59:42'
 		),
+		array(
+			'id' => 2,
+			'title' => 'Lorem ipsum dolor sit amet 2',
+			'link' => 'Lorem ipsum dolor sit amet 2',
+			'last_scraped' => '2012-10-25 23:59:42'
+		),
 	);
 
 }

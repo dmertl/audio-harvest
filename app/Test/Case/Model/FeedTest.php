@@ -25,14 +25,41 @@ class FeedTest extends CakeTestCase {
 	}
 
 	public function testScrapeAll() {
-		//TODO: test scraping multiple feeds
+		$xml = $this->getSampleFeed(array(
+				array('title' => 'test 1', 'link' => 'test 1')
+			)
+		);
+		$this->Feed->testResponse = $xml;
+		$this->Feed->scrapeAll();
+
+		//Assert Feed 1 last_scraped updated
+		$expected = time();
+		$actual = strtotime($this->Feed->field('last_scraped', array('id' => 1)));
+		$this->assertWithinMargin($actual, $expected, 1, 'last_scraped was not updated.');
+
+		//Assert Feed 2 last_scraped updated
+		$expected = time();
+		$actual = strtotime($this->Feed->field('last_scraped', array('id' => 2)));
+		$this->assertWithinMargin($actual, $expected, 1, 'last_scraped was not updated.');
 	}
 
 	public function testScrapeCreatesFeedItems() {
-//		$feed = array('Feed' => array('link' => 'test'));
-//		$this->Feed->testResponse = file_get_contents(TESTS . 'Fixture' . DS . 'feed.xml');
-//		$this->Feed->scrape($feed);
-		//TODO: test scrape creates FeedItem records
+		$xml = $this->getSampleFeed(array(
+				array('title' => 'test 1', 'link' => 'test 1'),
+				array('title' => 'test 2', 'link' => 'test 2')
+		));
+		$this->Feed->testResponse = $xml;
+		$this->Feed->scrape(array('Feed' => array('id' => 1, 'link' => 'test')));
+		//Assert FeedItem test 1 created
+		$item_1 = $this->Feed->FeedItem->find('first', array('conditions' => array('FeedItem.link' => 'test 1'), 'recursive' => -1));
+		$this->assertEqual(count($item_1), 1);
+		//Assert FeedItem test 2 created
+		$item_2 = $this->Feed->FeedItem->find('first', array('conditions' => array('FeedItem.link' => 'test 2'), 'recursive' => -1));
+		$this->assertEqual(count($item_2), 1);
+		//Assert Feed last_scraped updated
+		$expected = time();
+		$actual = strtotime($this->Feed->field('last_scraped', array('id' => 1)));
+		$this->assertWithinMargin($actual, $expected, 1, 'last_scraped was not updated.');
 	}
 
 	//Error tests
