@@ -58,7 +58,9 @@ class Feed extends AppModel {
 				if(!empty($feed_xml->channel->item)) {
 					foreach($feed_xml->channel->item as $item) {
 						if($feed_item = $this->rssItemToFeedItem($item, $feed)) {
-							$this->saveFeedItem($feed_item);
+							if(!$this->FeedItem->find('count', array('conditions' => array('link' => $feed['FeedItem']['link'])))) {
+								$this->saveFeedItem($feed_item);
+							}
 						}
 					}
 				} else {
@@ -98,10 +100,14 @@ class Feed extends AppModel {
 	 */
 	protected function toXmlSafe($string) {
 		libxml_use_internal_errors();
-		if($xml = new SimpleXMLElement(trim($string))) {
-			return $xml;
-		} else {
-			throw new FeedResponseException('Unable to parse feed: ' . json_encode(libxml_get_errors()) . ' Content:' . $string);
+		try {
+			if($xml = new SimpleXMLElement(trim($string))) {
+				return $xml;
+			} else {
+				throw new FeedResponseException('Unable to parse feed: ' . json_encode(libxml_get_errors()) . ' Content:' . $string);
+			}
+		} catch(Exception $e) {
+			throw new FeedResponseException($e->getMessage(), $e->getCode(), $e);
 		}
 	}
 
