@@ -120,7 +120,7 @@ class FeedTest extends CakeTestCase {
 		$this->Feed->getHttpSocket()->testResponseBody = $xml;
 		$this->Feed->scrape(array('Feed' => array('id' => 1, 'link' => 'test')));
 		$actual = $this->Feed->FeedItem->find('all');
-		$this->assertEqual(count($actual), 1);
+		$this->assertEqual(count($actual), 3);
 		$expected = time();
 		$actual = strtotime($this->Feed->field('last_scraped', array('id' => 1)));
 		$this->assertWithinMargin($actual, $expected, 1, 'last_scraped was not updated.');

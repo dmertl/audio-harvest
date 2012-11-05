@@ -31,9 +31,4 @@ class Link extends AppModel {
 	 */
 	public $hasMany = array('Mp3' => array());
 
-	const TYPE_MP3 = 1;
-	const TYPE_MEDIAFIRE = 2;
-	const TYPE_ZSHARE = 3;
-	const TYPE_SOUNDCLOUD = 4;
-
 }

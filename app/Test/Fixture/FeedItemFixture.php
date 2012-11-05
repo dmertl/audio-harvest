@@ -1,15 +1,13 @@
 <?php
 /**
  * FeedItemFixture
- *
  */
 class FeedItemFixture extends CakeTestFixture {
 
-/**
- * Fields
- *
- * @var array
- */
+	/**
+	 * Fields
+	 * @var array
+	 */
 	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
 		'feed_id' => array('type' => 'integer', 'null' => false, 'default' => null),
@@ -24,11 +22,10 @@ class FeedItemFixture extends CakeTestFixture {
 		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM')
 	);
 
-/**
- * Records
- *
- * @var array
- */
+	/**
+	 * Records
+	 * @var array
+	 */
 	public $records = array(
 		array(
 			'id' => 1,
@@ -39,6 +36,24 @@ class FeedItemFixture extends CakeTestFixture {
 			'scraped' => 1,
 			'created' => '2012-10-25 22:59:54'
 		),
+		array(
+			'id' => 2,
+			'feed_id' => 1,
+			'title' => 'Lorem ipsum dolor sit amet 2',
+			'link' => 'Lorem ipsum dolor sit amet 2',
+			'guid' => 'Lorem ipsum dolor sit amet 2',
+			'scraped' => 0,
+			'created' => '2012-10-25 22:59:54'
+		),
+		array(
+			'id' => 3,
+			'feed_id' => 2,
+			'title' => 'Lorem ipsum dolor sit amet 3',
+			'link' => 'Lorem ipsum dolor sit amet 3',
+			'guid' => 'Lorem ipsum dolor sit amet 3',
+			'scraped' => 0,
+			'created' => '2012-10-25 22:59:54'
+		)
 	);
 
 }

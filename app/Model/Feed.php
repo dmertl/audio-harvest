@@ -2,7 +2,7 @@
 
 App::uses('AppModel', 'Model');
 App::uses('FeedResponseException', 'Lib/Error/Exception');
-App::uses('HttpSocket', 'Network/Http');
+App::uses('HarvestHttpSocket', 'Lib');
 
 /**
  * Feed Model
@@ -23,13 +23,13 @@ class Feed extends AppModel {
 	public $hasMany = array('FeedItem');
 
 	/**
-	 * @var HttpSocket
+	 * @var HarvestHttpSocket
 	 */
 	protected $httpSocket;
 
 	public function __construct($id = false, $table = null, $ds = null) {
 		parent::__construct($id, $table, $ds);
-		$this->httpSocket = new HttpSocket(array(
+		$this->httpSocket = new HarvestHttpSocket(array(
 			'request' => array(
 				'redirect' => 5
 			)
@@ -55,7 +55,7 @@ class Feed extends AppModel {
 	public function scrape($feed) {
 		CakeLog::write('scrape', 'Processing feed ' . $feed['Feed']['link'] . '.');
 		try {
-			$feed_response = $this->getFeedLinkContent($feed['Feed']['link']);
+			$feed_response = $this->httpSocket->get($feed['Feed']['link']);
 			if($feed_xml = $this->toXmlSafe($feed_response)) {
 				if(!empty($feed_xml->channel->item)) {
 					foreach($feed_xml->channel->item as $item) {
@@ -78,21 +78,6 @@ class Feed extends AppModel {
 		$feed['Feed']['last_scraped'] = date('Y-m-d H:i:s');
 		if(!$this->save($feed, false, array('last_scraped'))) {
 			CakeLog::write('scrape', 'Unable to save feed ' . $feed['Feed']['id']);
-		}
-	}
-
-	/**
-	 * Get the content from a feed link
-	 * @param string $url
-	 * @return string
-	 * @throws FeedResponseException
-	 */
-	protected function getFeedLinkContent($url) {
-		$response = $this->httpSocket->get($url);
-		if($response->code === '200') {
-			return $response->body;
-		} else {
-			throw new FeedResponseException($response->reasonPhrase, $response->code);
 		}
 	}
 

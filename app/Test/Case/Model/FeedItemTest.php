@@ -58,4 +58,36 @@ class FeedItemTest extends CakeTestCase {
 		$this->assertEqual($this->FeedItem->isBlacklisted($data), false);
 	}
 
+	public function testScrapeAll() {
+		//Test with multiple items
+	}
+
+	public function testScrape() {
+		//Test a with mp3, mediafire, zshare
+		//Test embed with soundcloud
+	}
+
+}
+
+class MockHttpSocket {
+
+	public $testResponseCode = '200';
+	public $testResponseBody = '';
+	public $testResponseReasonPhrase = '';
+
+	public function get($url) {
+		$response = new Object();
+		$response->code = $this->testResponseCode;
+		$response->body = $this->testResponseBody;
+		$response->reasonPhrase = $this->testResponseReasonPhrase;
+		return $response;
+	}
+}
+
+class TestFeedItem extends FeedItem {
+
+	public $useTable = 'feed_items';
+	public $alias = 'FeedItem';
+	public $name = 'FeedItem';
+
 }
