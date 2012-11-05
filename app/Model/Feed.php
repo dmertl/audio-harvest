@@ -60,8 +60,10 @@ class Feed extends AppModel {
 				if(!empty($feed_xml->channel->item)) {
 					foreach($feed_xml->channel->item as $item) {
 						if($feed_item = $this->rssItemToFeedItem($item, $feed)) {
-							if(!$this->FeedItem->find('count', array('conditions' => array('FeedItem.link' => $feed_item['FeedItem']['link'])))) {
-								$this->saveFeedItem($feed_item);
+							if(!$this->FeedItem->isBlacklisted(array_merge($feed, $feed_item))) {
+								if(!$this->FeedItem->find('count', array('conditions' => array('FeedItem.link' => $feed_item['FeedItem']['link'])))) {
+									$this->saveFeedItem($feed_item);
+								}
 							}
 						}
 					}
@@ -135,18 +137,6 @@ class Feed extends AppModel {
 		} else {
 			throw new FeedResponseException('Feed item missing title or link: ' . $item . ' Feed: ' . json_encode($feed));
 		}
-	}
-
-	/**
-	 * Check if a feed item is blacklisted
-	 * TODO: test and create FeedBlacklist in constructor
-	 * @param array $feed
-	 * @param array $feed_item
-	 * @return bool
-	 */
-	protected function isBlacklisted($feed, $feed_item) {
-		$blacklist = new FeedBlacklist();
-		return $blacklist->isBlacklisted(array_merge($feed_item, $feed));
 	}
 
 	/**

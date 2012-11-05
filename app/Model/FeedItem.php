@@ -44,7 +44,7 @@ class FeedItem extends AppModel {
 	 * @return bool
 	 */
 	public function isBlacklisted($data) {
-		foreach($this->blacklist as $rule_name => $rule) {
+		foreach($this->blacklist as $rule) {
 			if($this->matches($data, $rule)) {
 				return true;
 			}

@@ -29,7 +29,7 @@ class FeedTest extends CakeTestCase {
 				array('title' => 'test 1', 'link' => 'test 1')
 			)
 		);
-		$this->Feed->testResponse = $xml;
+		$this->Feed->getHttpSocket()->testResponseBody = $xml;
 		$this->Feed->scrapeAll();
 
 		//Assert Feed 1 last_scraped updated
@@ -48,7 +48,7 @@ class FeedTest extends CakeTestCase {
 				array('title' => 'test 1', 'link' => 'test 1'),
 				array('title' => 'test 2', 'link' => 'test 2')
 		));
-		$this->Feed->testResponse = $xml;
+		$this->Feed->getHttpSocket()->testResponseBody = $xml;
 		$this->Feed->scrape(array('Feed' => array('id' => 1, 'link' => 'test')));
 		//Assert FeedItem test 1 created
 		$item_1 = $this->Feed->FeedItem->find('first', array('conditions' => array('FeedItem.link' => 'test 1'), 'recursive' => -1));
@@ -62,11 +62,36 @@ class FeedTest extends CakeTestCase {
 		$this->assertWithinMargin($actual, $expected, 1, 'last_scraped was not updated.');
 	}
 
+	public function testBlacklistedItemsNotAdded() {
+		Configure::write('FeedItem.blacklist', array(
+			'test' => array(
+				'Feed' => array(
+					'title' => '/Chemical Jump/i'
+				),
+				'FeedItem' => array(
+					'title' => '/test [0-1]/i'
+				)
+			)
+		));
+		$xml = $this->getSampleFeed(array(
+			array('title' => 'test 1', 'link' => 'test 1'),
+			array('title' => 'test 2', 'link' => 'test 2')
+		));
+		$this->Feed->getHttpSocket()->testResponseBody = $xml;
+		$this->Feed->scrape(array('Feed' => array('id' => 1, 'link' => 'test', 'title' => 'Chemical Jump')));
+		//Assert FeedItem test 1 not created
+		$item_1 = $this->Feed->FeedItem->find('first', array('conditions' => array('FeedItem.link' => 'test 1'), 'recursive' => -1));
+		$this->assertEqual(empty($item_1), true);
+		//Assert FeedItem test 2 created
+		$item_2 = $this->Feed->FeedItem->find('first', array('conditions' => array('FeedItem.link' => 'test 2'), 'recursive' => -1));
+		$this->assertEqual(count($item_2), 1);
+	}
+
 	//Error tests
 
 	public function testScrapeWithNon200Response() {
 		$feed = array('Feed' => array('id' => 1, 'link' => 'test'));
-		$this->Feed->testResponseCode = '404';
+		$this->Feed->getHttpSocket()->testResponseCode = '404';
 		$this->Feed->scrape($feed);
 		$expected = time();
 		$actual = strtotime($this->Feed->field('last_scraped', array('id' => 1)));
@@ -83,7 +108,7 @@ class FeedTest extends CakeTestCase {
 
 	public function testScrapeInvalidXml() {
 		$feed = array('Feed' => array('id' => 1, 'link' => 'test'));
-		$this->Feed->testResponse = '<?xml version="1.0" encoding="UTF-8"?> <asdf';
+		$this->Feed->getHttpSocket()->testResponseBody = '<?xml version="1.0" encoding="UTF-8"?> <asdf';
 		$this->Feed->scrape($feed);
 		$expected = time();
 		$actual = strtotime($this->Feed->field('last_scraped', array('id' => 1)));
@@ -92,7 +117,7 @@ class FeedTest extends CakeTestCase {
 
 	public function testScrapeExistingLinkDoesNotCreateDuplicate() {
 		$xml = $this->getSampleFeed(array(array('title' => 'test', 'link' => 'Lorem ipsum dolor sit amet')));
-		$this->Feed->testResponse = $xml;
+		$this->Feed->getHttpSocket()->testResponseBody = $xml;
 		$this->Feed->scrape(array('Feed' => array('id' => 1, 'link' => 'test')));
 		$actual = $this->Feed->FeedItem->find('all');
 		$this->assertEqual(count($actual), 1);
@@ -104,7 +129,7 @@ class FeedTest extends CakeTestCase {
 	public function testScrapeNoItems() {
 		$this->Feed->query('TRUNCATE TABLE feed_items');
 		$xml = $this->getSampleFeed(array());
-		$this->Feed->testResponse = $xml;
+		$this->Feed->getHttpSocket()->testResponseBody = $xml;
 		$this->Feed->scrape(array('Feed' => array('id' => 1, 'link' => 'test')));
 		$actual = $this->Feed->FeedItem->find('all');
 		$this->assertEqual(empty($actual), true);
@@ -116,7 +141,7 @@ class FeedTest extends CakeTestCase {
 	public function testScrapeItemWithNoTitle() {
 		$this->Feed->query('TRUNCATE TABLE feed_items');
 		$xml = $this->getSampleFeed(array(array('link' => 'http://www.example.com/')));
-		$this->Feed->testResponse = $xml;
+		$this->Feed->getHttpSocket()->testResponseBody = $xml;
 		$this->Feed->scrape(array('Feed' => array('id' => 1, 'link' => 'test')));
 		$actual = $this->Feed->FeedItem->find('all');
 		$this->assertEqual(empty($actual), true);
@@ -128,7 +153,7 @@ class FeedTest extends CakeTestCase {
 	public function testScrapeItemWithNoLink() {
 		$this->Feed->query('TRUNCATE TABLE feed_items');
 		$xml = $this->getSampleFeed(array(array('title' => 'Test Title')));
-		$this->Feed->testResponse = $xml;
+		$this->Feed->getHttpSocket()->testResponseBody = $xml;
 		$this->Feed->scrape(array('Feed' => array('id' => 1, 'link' => 'test')));
 		$actual = $this->Feed->FeedItem->find('all');
 		$this->assertEqual(empty($actual), true);
@@ -161,21 +186,35 @@ class FeedTest extends CakeTestCase {
 
 }
 
+class MockHttpSocket {
+
+	public $testResponseCode = '200';
+	public $testResponseBody = '';
+	public $testResponseReasonPhrase = '';
+
+	public function get($url) {
+		$response = new Object();
+		$response->code = $this->testResponseCode;
+		$response->body = $this->testResponseBody;
+		$response->reasonPhrase = $this->testResponseReasonPhrase;
+		return $response;
+	}
+
+}
+
 class TestFeed extends Feed {
 
 	public $useTable = 'feeds';
 	public $alias = 'Feed';
 	public $name = 'Feed';
 
-	public $testResponseCode = '200';
-	public $testResponse = '';
+	public function __construct($id = false, $table = null, $ds = null) {
+		parent::__construct($id, $table, $ds);
+		$this->httpSocket = new MockHttpSocket();
+	}
 
-	protected function getFeedLinkContent($url) {
-		if($this->testResponseCode === '200') {
-			return $this->testResponse;
-		} else {
-			throw new FeedResponseException('', $this->testResponseCode);
-		}
+	public function getHttpSocket() {
+		return $this->httpSocket;
 	}
 
 }
