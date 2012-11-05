@@ -7,6 +7,14 @@ App::uses('HttpSocket', 'Network/Http');
  */
 class HarvestHttpSocket extends HttpSocket {
 
+	/**
+	 * @var mixed
+	 */
+	protected $last_response;
+
+	/**
+	 * @var array
+	 */
 	protected $last_headers = array();
 
 	/**
@@ -16,17 +24,25 @@ class HarvestHttpSocket extends HttpSocket {
 	 * @throws FeedResponseException
 	 */
 	public function get($uri = null, $query = array(), $request = array()) {
-		$response = parent::get($uri, $query, $request);
-		$this->last_headers = $response->response['header'];
-		if($response->code === '200') {
-			return $response->body;
+		$this->last_response = parent::get($uri, $query, $request);
+		$this->last_headers = $this->last_response->response['header'];
+		if($this->last_response->code === '200') {
+			return $this->last_response->body;
 		} else {
-			throw new FeedResponseException($response->reasonPhrase, $response->code);
+			throw new FeedResponseException($this->last_response->reasonPhrase, $this->last_response->code);
 		}
 	}
 
 	/**
-	 * Get header from last response
+	 * Get headers from last response
+	 * @return array
+	 */
+	public function getLastHeaders() {
+		return $this->last_headers;
+	}
+
+	/**
+	 * Get the value of a header from the last response
 	 * @param string $name Header name
 	 * @return string|bool Header value or false if header was not sent
 	 */
