@@ -116,11 +116,12 @@ class FeedTest extends CakeTestCase {
 	}
 
 	public function testScrapeExistingLinkDoesNotCreateDuplicate() {
+		$this->Feed->query('TRUNCATE TABLE feed_items');
 		$xml = $this->getSampleFeed(array(array('title' => 'test', 'link' => 'Lorem ipsum dolor sit amet')));
 		$this->Feed->getHttpSocket()->testResponseBody = $xml;
 		$this->Feed->scrape(array('Feed' => array('id' => 1, 'link' => 'test')));
 		$actual = $this->Feed->FeedItem->find('all');
-		$this->assertEqual(count($actual), 3);
+		$this->assertEqual(count($actual), 0);
 		$expected = time();
 		$actual = strtotime($this->Feed->field('last_scraped', array('id' => 1)));
 		$this->assertWithinMargin($actual, $expected, 1, 'last_scraped was not updated.');

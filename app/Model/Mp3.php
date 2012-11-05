@@ -5,26 +5,18 @@ App::import('Vendor', 'getid3/getid3');
 
 /**
  * Mp3 Model
- *
  * @property Link $Link
  */
 class Mp3 extends AppModel {
 
-/**
- * Display field
- *
- * @var string
- */
+	/**
+	 * @var string
+	 */
 	public $displayField = 'name';
 
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * belongsTo associations
- *
- * @var array
- */
+	/**
+	 * @var array
+	 */
 	public $belongsTo = array(
 		'Link' => array(
 			'className' => 'Link',
@@ -35,6 +27,11 @@ class Mp3 extends AppModel {
 		)
 	);
 
+	/**
+	 * Get mp3 information
+	 * @param string $file
+	 * @return array
+	 */
 	function getBasicInfo($file) {
 		static $id3_cache;
 		if(!$id3_cache) $id3_cache = array();

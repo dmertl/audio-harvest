@@ -88,7 +88,7 @@ class FeedItem extends AppModel {
 	 * Scrape all unscraped feed items
 	 */
 	public function scrapeAll() {
-		$feed_items = $this->FeedItem->find('all', array(
+		$feed_items = $this->find('all', array(
 				'conditions' => array('FeedItem.scraped' => 0),
 				'recursive' => -1
 			)
@@ -106,31 +106,35 @@ class FeedItem extends AppModel {
 	 */
 	public function scrape($feed_item) {
 		CakeLog::write('scrape', 'Processing feed item ' . $feed_item['FeedItem']['link']);
-		if($html = str_get_html($this->httpSocket->get($feed_item['FeedItem']['link']))) {
-			//Anchor tags
-			$links = $this->processAnchorTags($html->find('a'), $feed_item);
-			//Embed tags
-			$links = array_merge($links, $this->processEmbedTags($html->find('embed'), $feed_item));
-			foreach($links as $link) {
-				$exists = $this->Link->find('first', array(
-						'conditions' => array('Link.url' => $link['Link']['url']),
-						'recursive' => -1
-					)
-				);
-				if(!$exists) {
-					CakeLog::write('scrape', 'Adding new link ' . $link['Link']['url']);
-					$this->Link->create();
-					if(!$this->Link->save($link)) {
-						CakeLog::write('scrape', 'Unable to save link ' . $link['Link']['url']);
+		try {
+			if($html = str_get_html($this->httpSocket->get($feed_item['FeedItem']['link']))) {
+				//Anchor tags
+				$links = $this->processAnchorTags($html->find('a'), $feed_item);
+				//Embed tags
+				$links = array_merge($links, $this->processEmbedTags($html->find('embed'), $feed_item));
+				foreach($links as $link) {
+					$exists = $this->Link->find('first', array(
+							'conditions' => array('Link.url' => $link['Link']['url']),
+							'recursive' => -1
+						)
+					);
+					if(!$exists) {
+						CakeLog::write('scrape', 'Adding new link ' . $link['Link']['url']);
+						$this->Link->create();
+						if(!$this->Link->save($link)) {
+							CakeLog::write('scrape', 'Unable to save link ' . $link['Link']['url']);
+						}
 					}
 				}
+			} else {
+				CakeLog::write('scrape', 'Empty response from feed item ' . $feed_item['FeedItem']['id']);
 			}
-		} else {
-			CakeLog::write('scrape', 'Unable to get HTML for feed item ' . $feed_item['FeedItem']['id']);
+		} catch(FeedResponseException $e) {
+			CakeLog::write('scrape', 'Unable to get feed item ' . $feed_item['FeedItem']['id']);
 		}
 		//Save scraped status
 		$feed_item['FeedItem']['scraped'] = 1;
-		if(!$this->FeedItem->save($feed_item, false, array('scraped'))) {
+		if(!$this->save($feed_item, false, array('scraped'))) {
 			CakeLog::write('scrape', 'Unable to save feed item ' . $feed_item['FeedItem']['id']);
 		}
 	}
