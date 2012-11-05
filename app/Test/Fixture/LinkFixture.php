@@ -32,11 +32,35 @@ class LinkFixture extends CakeTestFixture {
 		array(
 			'id' => 1,
 			'feed_item_id' => 1,
-			'url' => 'Lorem ipsum dolor sit amet',
+			'url' => 'http://www.example.com/test_1.mp3',
+			'type' => 1,
+			'scraped' => 0,
+			'created' => '2012-10-25 23:00:21'
+		),
+		array(
+			'id' => 2,
+			'feed_item_id' => 1,
+			'url' => 'http://www.example.com/test_2.mp3',
+			'type' => 1,
+			'scraped' => 0,
+			'created' => '2012-10-25 23:00:21'
+		),
+		array(
+			'id' => 3,
+			'feed_item_id' => 1,
+			'url' => 'Lorem ipsum dolor sit amet 3',
 			'type' => 1,
 			'scraped' => 1,
 			'created' => '2012-10-25 23:00:21'
 		),
+		array(
+			'id' => 4,
+			'feed_item_id' => 1,
+			'url' => 'Lorem ipsum dolor sit amet 4',
+			'type' => 2,
+			'scraped' => 1,
+			'created' => '2012-10-25 23:00:21'
+		)
 	);
 
 }
