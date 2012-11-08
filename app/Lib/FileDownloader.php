@@ -57,36 +57,13 @@ class FileDownloader {
 	 * @throws FileDownloadException
 	 */
 	protected function saveResponseToFile($response, $save_path, $url) {
-		//Flag to do unique filename check, necessary since tempnam creates the file
-		$needs_unique = true;
 		//Check if $save_path is a directory or file
 		if(is_dir($save_path)) {
 			$save_dir = $save_path;
-			$headers = $response->response['header'];
-			//Use filename from Content-Disposition header
-			if(isset($headers['Content-Disposition'])) {
-				$cd = $this->parseContentDisposition($headers['Content-Disposition']);
-				if(isset($cd['params']['filename'])) {
-					$path = $save_path . DS . $cd['params']['filename'];
-				}
-			}
-			//Use filename from url
-			if(!isset($path)) {
-				if(($slash_pos = strpos($url, '/')) !== false) {
-					$query_pos = strpos($url, '?');
-					$length = $query_pos ? $query_pos - $slash_pos - 1 : strlen($url) - $slash_pos - 1;
-					if($filename = substr($url, $slash_pos + 1, $length)) {
-						$path = $save_path . DS . $filename;
-					}
-				}
-			}
-			//Use tempnam
-			if(!isset($path)) {
-				if(!$path = tempnam($save_path, 'fd_')) {
-					throw new FileDownloadException('Unable to create temp file in "' . $save_path . '".');
-				} else {
-					$needs_unique = false;
-				}
+			if($filename = $this->determineFilename($url, $response)) {
+				$path = $save_path . DS . $filename;
+			} else {
+				$path = $save_path . DS . $this->getTemporaryFilename();
 			}
 		} else {
 			$save_dir = dirname($save_path);
@@ -95,15 +72,57 @@ class FileDownloader {
 		if(realpath(dirname($path)) !== realpath($save_dir)) {
 			throw new FileDownloadException('Security error! File path "' . $path . '" is not in directory "' . $save_path . '".');
 		}
-		//Only get unique filename if necessary
-		if($needs_unique) {
-			$path = FileUtil::uniqueFilename($path);
-		}
+		$path = FileUtil::incrementedUniqueFilename($path);
 		if(@file_put_contents($path, $response->body) > 0) {
 			return $path;
 		} else {
 			throw new FileDownloadException('Unable to save file to "' . $path . '".');
 		}
+	}
+
+	/**
+	 * Attempt to get a filename from the request and response
+	 * @param string $url
+	 * @param HttpResponse $response
+	 * @return string|bool
+	 */
+	protected function determineFilename($url, $response) {
+		if($filename = $this->getFilenameFromHeader($response->response['header'])) {
+			return $filename;
+		} else {
+			return $this->getFilenameFromUrl($url);
+		}
+	}
+
+	/**
+	 * Get filename from Content-Disposition header
+	 * @param array $headers Array of headers from request
+	 * @return string|bool
+	 */
+	protected function getFilenameFromHeader($headers) {
+		if(isset($headers['Content-Disposition'])) {
+			$cd = $this->parseContentDisposition($headers['Content-Disposition']);
+			if(isset($cd['params']['filename'])) {
+				return $cd['params']['filename'];
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Get filename from request URL
+	 * @param string $url
+	 * @return string|bool
+	 */
+	protected function getFilenameFromUrl($url) {
+		return FileUtil::parseFilenameFromUrl($url);
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getTemporaryFilename() {
+		return uniqid('fd_');
 	}
 
 	/**

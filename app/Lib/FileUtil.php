@@ -10,7 +10,7 @@ class FileUtil {
 	 * @param string $path
 	 * @return string
 	 */
-	public static function uniqueFilename($path) {
+	public static function incrementedUniqueFilename($path) {
 		if(file_exists($path)) {
 			if(strpos($path, '.') !== false) {
 				$file = substr($path, 0, strpos($path, '.'));
@@ -27,6 +27,22 @@ class FileUtil {
 			}
 		}
 		return $path;
+	}
+
+	/**
+	 * Attempt to parse a filename out of a URL
+	 * @param string $url
+	 * @return string|bool
+	 */
+	public static function parseFilenameFromUrl($url) {
+		if(($slash_pos = strrpos($url, '/')) !== false) {
+			$query_pos = strpos($url, '?');
+			$length = $query_pos ? $query_pos - $slash_pos - 1 : strlen($url) - $slash_pos - 1;
+			if($filename = substr($url, $slash_pos + 1, $length)) {
+				return $filename;
+			}
+		}
+		return false;
 	}
 
 }

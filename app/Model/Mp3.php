@@ -5,6 +5,13 @@ App::uses('HarvestHttpSocket', 'Lib');
 App::import('Vendor', 'getid3/getid3');
 
 /**
+ * Before starting a download check that a file with the same name does not already exists
+ * After downloading a file use url, request, and data to determine if a copy of the file already exists
+ * 	If a copy does exist use file conflict resolver to determine which one to keep
+ * 	After resolving conflict name remaining file appropriately and remove unused data
+ */
+
+/**
  * Mp3 Model
  * @property Link $Link
  */
@@ -32,7 +39,7 @@ class Mp3 extends AppModel {
 
 	public function __construct($id = false, $table = null, $ds = null) {
 		parent::__construct($id, $table, $ds);
-		$this->downloadPath = APP_PATH . 'downloads/';
+		$this->downloadPath = APP . 'downloads/';
 		$this->httpSocket = new HarvestHttpSocket();
 	}
 
