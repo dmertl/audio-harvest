@@ -19,59 +19,59 @@ class FileDownloaderTest extends CakeTestCase {
 		shell_exec('rm -rf ' . $this->basePath);
 	}
 
-	public function testGetSavesFileUsingUrlFilename() {
+	public function testSaveFileUsingUrlFilename() {
 		$downloader = new TestFileDownloader();
-		$actual = $downloader->get('/test', $this->basePath);
+		$actual = $downloader->save('/test', $this->basePath);
 		$this->assertEqual($actual, $this->basePath . DS . 'test');
 		$this->assertEqual(file_exists($actual), true);
 	}
 
-	public function testGetSavesFileUsingHeaderFilename() {
+	public function testSaveFileUsingHeaderFilename() {
 		$downloader = new TestFileDownloader();
 		$downloader->getHttpSocket()->testResponseHeaders = array(
 			'Content-Disposition' => 'Content-Disposition: attachment; filename="test_cd"'
 		);
-		$actual = $downloader->get('/test', $this->basePath);
+		$actual = $downloader->save('/test', $this->basePath);
 		$this->assertEqual($actual, $this->basePath . DS . 'test_cd');
 		$this->assertEqual(file_exists($actual), true);
 	}
 
-	public function testGetSavesFileUsingTempnam() {
+	public function testSaveFileUsingTempnam() {
 		$downloader = new TestFileDownloader();
-		$actual = $downloader->get('', $this->basePath);
+		$actual = $downloader->save('', $this->basePath);
 		$this->assertEqual(dirname($actual), $this->basePath);
 		$this->assertEqual(file_exists($actual), true);
 	}
 
-	public function testGetSavesDirectlyToFile() {
+	public function testSaveDirectlyToFile() {
 		$downloader = new TestFileDownloader();
-		$actual = $downloader->get('', $this->basePath . DS . 'test');
+		$actual = $downloader->save('', $this->basePath . DS . 'test');
 		$this->assertEqual($actual, $this->basePath . DS . 'test');
 		$this->assertEqual(file_exists($actual), true);
 	}
 
 	//error test cases
 
-	public function testGetRequestFailure() {
+	public function testSaveRequestFailure() {
 		$this->expectException('FileDownloadException', 'Unable to make http request.');
 		$downloader = new TestFileDownloader();
 		$downloader->getHttpSocket()->testResponseFailure = true;
-		$downloader->get('', '');
+		$downloader->save('', '');
 	}
 
-	public function testGetNon200Response() {
+	public function testSaveNon200Response() {
 		$this->expectException('FileDownloadException', 'Request error (404) Not Found.');
 		$downloader = new TestFileDownloader();
 		$downloader->getHttpSocket()->testResponseCode = 404;
 		$downloader->getHttpSocket()->testResponseReasonPhrase = 'Not Found';
-		$downloader->get('', '');
+		$downloader->save('', '');
 	}
 
-	public function testGetEmptyResponse() {
+	public function testSaveEmptyResponse() {
 		$this->expectException('FileDownloadException', 'Empty response.');
 		$downloader = new TestFileDownloader();
 		$downloader->getHttpSocket()->testResponseBody = '';
-		$downloader->get('', '');
+		$downloader->save('', '');
 	}
 
 	public function testSaveSecurityCheck() {
@@ -82,7 +82,7 @@ class FileDownloaderTest extends CakeTestCase {
 		$downloader->getHttpSocket()->testResponseHeaders = array(
 			'Content-Disposition' => 'Content-Disposition: attachment; filename="../passwd"'
 		);
-		$downloader->get('', $subdir);
+		$downloader->save('', $subdir);
 	}
 
 }

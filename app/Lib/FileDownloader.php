@@ -30,7 +30,7 @@ class FileDownloader {
 	 * @return string Path to file
 	 * @throws FileDownloadException
 	 */
-	public function get($url, $save_path) {
+	public function save($url, $save_path) {
 		$this->lastResponse = null;
 		if($response = $this->httpSocket->get($url)) {
 			$this->lastResponse = $response;

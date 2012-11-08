@@ -51,7 +51,7 @@ class Link extends AppModel {
 	 */
 	public function scrape($link) {
 		CakeLog::write('scrape', 'Processing link ' . $link['Link']['url']);
-		if(!$filename = $this->parseFilenameFromUrl($link['Link']['url'])) {
+		if(!$filename = FileUtil::parseFilenameFromUrl($link['Link']['url'])) {
 			$filename = null;
 			CakeLog::write('scrape', 'Unable to parse filename from url ' . $link['Link']['url'] . ' for link ' . $link['Link']['id']);
 		}
@@ -71,16 +71,6 @@ class Link extends AppModel {
 		if(!$this->save($link)) {
 			CakeLog::write('scrape', 'Unable to save link ' . $link['Link']['id']);
 		}
-	}
-
-	/**
-	 * Parse filename from url
-	 * @param string $url
-	 * @return bool|string
-	 */
-	protected function parseFilenameFromUrl($url) {
-		if(strpos($url, '/') === false) return false;
-		return substr($url, strrpos($url, '/') + 1);
 	}
 
 }

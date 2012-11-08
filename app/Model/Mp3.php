@@ -39,8 +39,7 @@ class Mp3 extends AppModel {
 
 	public function __construct($id = false, $table = null, $ds = null) {
 		parent::__construct($id, $table, $ds);
-		$this->downloadPath = APP . 'downloads/';
-		$this->httpSocket = new HarvestHttpSocket();
+		$this->downloadPath = WWW_ROOT . 'downloads' . DS;
 	}
 
 	/**
@@ -64,44 +63,24 @@ class Mp3 extends AppModel {
 
 	/**
 	 * Download an mp3
-	 * TODO: filename can be null, should generate a unique filename in Link scrape
 	 * @param array $mp3
 	 */
 	public function download($mp3) {
 		CakeLog::write('scrape', 'Downloading ' . $mp3['Mp3']['url']);
+		$downloader = new FileDownloader();
 		//Check if file exists
 		if(!$this->downloadExists($mp3['Mp3']['filename'])) {
 			try {
 				//Download mp3
-				$data = $this->httpSocket->get($mp3['Mp3']['url']);
-				try {
-					//Save data to temp file
-					$tmp_name = $this->saveTempFile($data);
-					//Gather data from mp3
-					$mp3 = $this->processMp3($mp3, $data, $tmp_name, $this->httpSocket->getLastHeaders());
-					//Check that file has not already been downloaded
-					if(!$this->hashExists($mp3['Mp3']['hash'])) {
-						$copy = $this->findCopy($mp3);
-						if($copy) {
-							if($mp3['Mp3']['bitrate'] > $copy['Mp3']['bitrate']) {
-								//Remove inferior quality copy
-								unlink($this->downloadPath . $copy['Mp3']['filename']);
-								//Note removal reason
-								$copy['Mp3']['error'] = 'Superior quality copy found';
-								$this->save($copy, false, array('error'));
-							} else {
-								//Remote inferior quality copy from temp location
-								unlink($tmp_name);
-								$mp3['Mp3']['error'] = 'Inferior quality copy';
-							}
-						} else {
-							//TODO: Move mp3 to new location
-						}
-					} else {
-						CakeLog::write('scrape', 'Found duplicate mp3 by hash ' . $mp3['Mp3']['hash'] . ' for ' . $mp3['Mp3']['id']);
-					}
-				} catch(FileDownloadException $e) {
-					CakeLog::write('scrape', 'Unable to process Mp3. Error: ' . $e);
+				$path = $downloader->save($mp3['Mp3']['url'], $this->downloadPath . $mp3['Mp3']['filename']);
+				//Update mp3 record
+				$mp3 = array_merge($mp3['Mp3'], $this->getDataFromFile($path)['Mp3']);
+				$mp3['Mp3']['downloaded'] = date('Y-m-d H:i:s');
+				if($this->save($mp3)) {
+					//Remove any duplicate copies
+					$this->resolveMp3Conflicts($mp3, $path);
+				} else {
+					CakeLog::write('scrape', 'Unable to save Mp3. Data: ' . json_encode($mp3));
 				}
 			} catch(FeedResponseException $e) {
 				CakeLog::write('scrape', 'Unable to download mp3 from ' . $mp3['Mp3']['url'] . '. Error: ' . $e);
@@ -127,45 +106,43 @@ class Mp3 extends AppModel {
 	}
 
 	/**
-	 * Write data to temp file
-	 * @param string $data
-	 * @return string
-	 * @throws FileDownloadException
-	 */
-	protected function saveTempFile($data) {
-		if($tmp_name = tempnam(TMP, 'ah_')) {
-			if(file_put_contents($tmp_name, $data) !== false) {
-				return $tmp_name;
-			} else {
-				throw new FileDownloadException('Unable to write data to temp file ' . $tmp_name);
-			}
-		} else {
-			throw new FileDownloadException('Unable to create temp file in ' . TMP);
-		}
-	}
-
-	/**
-	 * @param array $mp3
-	 * @param string $data
-	 * @param string $temp_file
-	 * @param array $headers
+	 * Get mp3 data from file
+	 * @param $path
 	 * @return array
 	 */
-	protected function processMp3($mp3, $data, $temp_file, $headers) {
-		//Update hash, size, and download date
-		$mp3['Mp3']['hash'] = md5($data);
-		$mp3['Mp3']['size'] = strlen($data);
-		$mp3['Mp3']['downloaded'] = date('Y-m-d H:i:s');
-		//Pull filename from Content-Disposition header if available
-		if(isset($headers['Content-Disposition'])) {
-			$content_disposition = $this->httpSocket->parseContentDisposition($headers['Content-Disposition']);
-			if(isset($content_disposition['params']['filename'])) {
-				$mp3['Mp3']['filename'] = $content_disposition['params']['filename'];
+	public function getDataFromFile($path) {
+		$data = file_get_contents($path);
+		$mp3['Mp3'] = array(
+			'filename' => basename($path),
+			'hash' => md5($data),
+			'size' => strlen($data)
+		);
+		return array_merge($mp3['Mp3'], $this->getId3Data($path));
+	}
+
+	public function resolveMp3Conflicts($mp3) {
+		//Check for copies, remove inferior, flag MP3 records as removed
+		//Check that file has not already been downloaded
+		if(!$this->hashExists($mp3['Mp3']['hash'])) {
+			$copy = $this->findCopy($mp3);
+			if($copy) {
+				if($mp3['Mp3']['bitrate'] > $copy['Mp3']['bitrate']) {
+					//Remove inferior quality copy
+					unlink($this->downloadPath . $copy['Mp3']['filename']);
+					//Note removal reason
+					$copy['Mp3']['error'] = 'Superior quality copy found';
+					$this->save($copy, false, array('error'));
+				} else {
+					//Remote inferior quality copy from temp location
+					unlink($tmp_name);
+					$mp3['Mp3']['error'] = 'Inferior quality copy';
+				}
+			} else {
+				//TODO: Move mp3 to new location
 			}
+		} else {
+			CakeLog::write('scrape', 'Found duplicate mp3 by hash ' . $mp3['Mp3']['hash'] . ' for ' . $mp3['Mp3']['id']);
 		}
-		//Get id3 info
-		$mp3['Mp3'] = array_merge($mp3['Mp3'], $this->getBasicInfo($temp_file));
-		return $mp3;
 	}
 
 	/**
@@ -173,7 +150,7 @@ class Mp3 extends AppModel {
 	 * @param string $file
 	 * @return array
 	 */
-	public function id3ToMp3($file) {
+	public function getId3Data($file) {
 		//Defaults
 		$mp3 = array(
 			'playtime_seconds' => null,
@@ -245,82 +222,7 @@ class Mp3 extends AppModel {
 		));
 	}
 
-	/**
-	 * Get a unique filename
-	 * @param string $path
-	 * @param string $dup
-	 * @return bool|string
-	 */
-	protected function getUniqueFilename($path, $dup = '') {
-		if(is_numeric($dup) && $dup >= 40) {
-			return false;
-		}
-		$dup_name = substr($path, 0, strrpos($path, '.')) . $dup . substr($path, strrpos($path, '.'));
-		if(file_exists($dup_name)) {
-			return $this->getUniqueFilename($path, ($dup == '' ? 1 : $dup + 1));
-		} else {
-			return $dup_name;
-		}
-	}
 
-	/**
-	 * Get mp3 information
-	 * @param string $file
-	 * @return array
-	 */
-	function getBasicInfo($file) {
-		static $id3_cache;
-		if(!$id3_cache) $id3_cache = array();
-		if(isset($id3_cache[$file])) {
-			return $id3_cache[$file];
-		} else {
-			$info = array();
-			if(file_exists($file)) {
-				$getID3 = new getID3();
-				$id3 = @$getID3->analyze($file);
-
-				if(!empty($id3['tags']['id3v2'])) {
-					$data = $id3['tags']['id3v2'];
-				} elseif(!empty($id3['tags']['id3v1'])) {
-					$data = $id3['tags']['id3v1'];
-				} else {
-					$data = null;
-				}
-
-				//Playtime
-				if(isset($id3['playtime_seconds'])) $info['playtime_seconds'] = $id3['playtime_seconds'];
-				//Bitrate
-				if(isset($id3['audio']['bitrate'])) $info['bitrate'] = $id3['audio']['bitrate'];
-
-				//id3 tag data
-				if(!empty($data)) {
-					$info['artist'] = null;
-					if(isset($data['artist'])) $info['artist'] = current($data['artist']);
-
-					$info['title'] = null;
-					if(isset($data['title'])) $info['title'] = current($data['title']);
-
-					$info['album'] = null;
-					if(isset($data['album'])) $info['album'] = current($data['album']);
-
-					$id3_cache[$file] = $info;
-				} else {
-					$error_string = 'Unable to get id3 data for file: ' . $file;
-					if(is_array($id3)) {
-						$error_string .= "\n" . 'Keys: ' . "\n" . print_r(array_keys($id3), true);
-					}
-					if(isset($id3['tags']) && is_array($id3['tags'])) {
-						$error_string .= "\n" . 'Tags: ' . "\n" . print_r(array_keys($id3['tags']), true);
-					}
-					CakeLog::write('error', $error_string);
-				}
-			} else {
-				CakeLog::write('error', 'Trying to get id3 info of file that does not exist, "' . $file . '"');
-			}
-
-			return $info;
-		}
-	}
 
 	function removeIfDuplicate($file) {
 		if(file_exists($file)) {
