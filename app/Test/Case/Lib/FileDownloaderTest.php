@@ -7,12 +7,23 @@ App::uses('FileDownloader', 'Lib');
  */
 class FileDownloaderTest extends CakeTestCase {
 
+	/* @var string */
+	protected $basePath;
+
+	public function setUp() {
+		$this->basePath = TMP . 'tests' . DS . 'FileDownloader';
+		mkdir($this->basePath);
+	}
+
+	public function tearDown() {
+		shell_exec('rm -rf ' . $this->basePath);
+	}
+
 	public function testGetSavesFileUsingUrlFilename() {
 		$downloader = new TestFileDownloader();
-		$actual = $downloader->get('/test', TESTS . 'Fixture' . DS . 'FileDownloader');
-		$this->assertEqual($actual, TESTS . 'Fixture' . DS . 'FileDownloader' . DS . 'test');
+		$actual = $downloader->get('/test', $this->basePath);
+		$this->assertEqual($actual, $this->basePath . DS . 'test');
 		$this->assertEqual(file_exists($actual), true);
-		unlink($actual);
 	}
 
 	public function testGetSavesFileUsingHeaderFilename() {
@@ -20,16 +31,16 @@ class FileDownloaderTest extends CakeTestCase {
 		$downloader->getHttpSocket()->testResponseHeaders = array(
 			'Content-Disposition' => 'Content-Disposition: attachment; filename="test_cd"'
 		);
-		$actual = $downloader->get('/test', TESTS . 'Fixture' . DS . 'FileDownloader');
-		$this->assertEqual($actual, TESTS . 'Fixture' . DS . 'FileDownloader' . DS . 'test_cd');
+		$actual = $downloader->get('/test', $this->basePath);
+		$this->assertEqual($actual, $this->basePath . DS . 'test_cd');
 		$this->assertEqual(file_exists($actual), true);
 		unlink($actual);
 	}
 
 	public function testGetSavesFileUsingTempnam() {
 		$downloader = new TestFileDownloader();
-		$actual = $downloader->get('', TESTS . 'Fixture' . DS . 'FileDownloader');
-		$this->assertEqual(dirname($actual), TESTS . 'Fixture' . DS . 'FileDownloader');
+		$actual = $downloader->get('', $this->basePath);
+		$this->assertEqual(dirname($actual), $this->basePath);
 		$this->assertEqual(file_exists($actual), true);
 		unlink($actual);
 	}
@@ -59,13 +70,14 @@ class FileDownloaderTest extends CakeTestCase {
 	}
 
 	public function testSaveSecurityCheck() {
-		$base_path = TESTS . 'Fixture' . DS . 'FileDownloader' . DS;
-		$this->expectException('FileDownloadException', 'Security error! File path "' . $base_path . 'save/../passwd" is not in directory "' . $base_path . 'save".');
+		$subdir = $this->basePath . DS . 'save';
+		mkdir($subdir);
+		$this->expectException('FileDownloadException', 'Security error! File path "' . $subdir . '/../passwd" is not in directory "' . $subdir . '".');
 		$downloader = new TestFileDownloader();
 		$downloader->getHttpSocket()->testResponseHeaders = array(
 			'Content-Disposition' => 'Content-Disposition: attachment; filename="../passwd"'
 		);
-		$downloader->get('', $base_path . 'save');
+		$downloader->get('', $subdir);
 	}
 
 }
