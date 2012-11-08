@@ -32,7 +32,6 @@ class FileDownloader {
 	 */
 	public function get($url, $save_path) {
 		$this->lastResponse = null;
-		$this->errorMessage = null;
 		if($response = $this->httpSocket->get($url)) {
 			$this->lastResponse = $response;
 			if($response->code === 200) {
@@ -128,6 +127,13 @@ class FileDownloader {
 			}
 		}
 		return $return;
+	}
+
+	/**
+	 * @return HttpResponse
+	 */
+	public function getLastResponse() {
+		return $this->lastResponse;
 	}
 
 }
