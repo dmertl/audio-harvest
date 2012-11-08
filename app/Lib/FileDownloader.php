@@ -55,7 +55,7 @@ class FileDownloader {
 	}
 
 	/**
-	 * Save respone to file
+	 * Save response to file
 	 * @param HttpResponse $response
 	 * @param string $save_path
 	 * @param string $url
@@ -63,6 +63,8 @@ class FileDownloader {
 	 * @throws FileDownloadException
 	 */
 	protected function saveResponseToFile($response, $save_path, $url) {
+		//Flag to do unique filename check, necessary since tempnam creates the file
+		$needs_unique = true;
 		//Check if $save_path is a directory or file
 		if(is_dir($save_path)) {
 			$save_dir = $save_path;
@@ -76,9 +78,9 @@ class FileDownloader {
 			}
 			//Use filename from url
 			if(!isset($path)) {
-				if($slash_pos = strpos($url, '/') !== false) {
+				if(($slash_pos = strpos($url, '/')) !== false) {
 					$query_pos = strpos($url, '?');
-					$length = $query_pos ? $query_pos - $slash_pos - 1 : null;
+					$length = $query_pos ? $query_pos - $slash_pos - 1 : strlen($url) - $slash_pos - 1;
 					if($filename = substr($url, $slash_pos + 1, $length)) {
 						$path = $save_path . DS . $filename;
 					}
@@ -88,6 +90,8 @@ class FileDownloader {
 			if(!isset($path)) {
 				if(!$path = tempnam($save_path, 'fd_')) {
 					throw new FileDownloadException('Unable to create temp file in "' . $save_path . '".');
+				} else {
+					$needs_unique = false;
 				}
 			}
 		} else {
@@ -97,7 +101,10 @@ class FileDownloader {
 		if(realpath(dirname($path)) !== realpath($save_dir)) {
 			throw new FileDownloadException('Security error! File path "' . $path . '" is not in directory "' . $save_path . '".');
 		}
-		$path = FileUtil::uniqueFilename($path);
+		//Only get unique filename if necessary
+		if($needs_unique) {
+			$path = FileUtil::uniqueFilename($path);
+		}
 		if(@file_put_contents($path, $response->body) > 0) {
 			return $path;
 		} else {

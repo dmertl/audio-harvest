@@ -7,8 +7,31 @@ App::uses('FileDownloader', 'Lib');
  */
 class FileDownloaderTest extends CakeTestCase {
 
-	public function testGet() {
+	public function testGetSavesFileUsingUrlFilename() {
+		$downloader = new TestFileDownloader();
+		$actual = $downloader->get('/test', TESTS . 'Fixture' . DS . 'FileDownloader');
+		$this->assertEqual($actual, TESTS . 'Fixture' . DS . 'FileDownloader' . DS . 'test');
+		$this->assertEqual(file_exists($actual), true);
+		unlink($actual);
+	}
 
+	public function testGetSavesFileUsingHeaderFilename() {
+		$downloader = new TestFileDownloader();
+		$downloader->getHttpSocket()->testResponseHeaders = array(
+			'Content-Disposition' => 'Content-Disposition: attachment; filename="test_cd"'
+		);
+		$actual = $downloader->get('/test', TESTS . 'Fixture' . DS . 'FileDownloader');
+		$this->assertEqual($actual, TESTS . 'Fixture' . DS . 'FileDownloader' . DS . 'test_cd');
+		$this->assertEqual(file_exists($actual), true);
+		unlink($actual);
+	}
+
+	public function testGetSavesFileUsingTempnam() {
+		$downloader = new TestFileDownloader();
+		$actual = $downloader->get('', TESTS . 'Fixture' . DS . 'FileDownloader');
+		$this->assertEqual(dirname($actual), TESTS . 'Fixture' . DS . 'FileDownloader');
+		$this->assertEqual(file_exists($actual), true);
+		unlink($actual);
 	}
 
 	//error test cases
@@ -43,13 +66,6 @@ class FileDownloaderTest extends CakeTestCase {
 			'Content-Disposition' => 'Content-Disposition: attachment; filename="../passwd"'
 		);
 		$downloader->get('', $base_path . 'save');
-	}
-
-	public function testSaveLocationDne() {
-		$base_path = TESTS . 'Fixture' . DS . 'FileDownloader' . DS;
-		$this->expectException('FileDownloadException', 'Unable to save file to "' . $base_path . 'dne".');
-		$downloader = new TestFileDownloader();
-		$downloader->get('', $base_path . 'dne');
 	}
 
 }
