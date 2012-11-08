@@ -34,7 +34,6 @@ class FileDownloaderTest extends CakeTestCase {
 		$actual = $downloader->get('/test', $this->basePath);
 		$this->assertEqual($actual, $this->basePath . DS . 'test_cd');
 		$this->assertEqual(file_exists($actual), true);
-		unlink($actual);
 	}
 
 	public function testGetSavesFileUsingTempnam() {
@@ -42,7 +41,13 @@ class FileDownloaderTest extends CakeTestCase {
 		$actual = $downloader->get('', $this->basePath);
 		$this->assertEqual(dirname($actual), $this->basePath);
 		$this->assertEqual(file_exists($actual), true);
-		unlink($actual);
+	}
+
+	public function testGetSavesDirectlyToFile() {
+		$downloader = new TestFileDownloader();
+		$actual = $downloader->get('', $this->basePath . DS . 'test');
+		$this->assertEqual($actual, $this->basePath . DS . 'test');
+		$this->assertEqual(file_exists($actual), true);
 	}
 
 	//error test cases

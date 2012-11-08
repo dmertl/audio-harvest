@@ -20,11 +20,6 @@ class FileDownloader {
 	 */
 	protected $lastResponse;
 
-	/**
-	 * @var string
-	 */
-	protected $errorMessage;
-
 	public function __construct() {
 		$this->httpSocket = new HttpSocket(array('request' => array('redirect' => 5)));
 	}
@@ -133,14 +128,6 @@ class FileDownloader {
 			}
 		}
 		return $return;
-	}
-
-	/**
-	 * Get error message from last request
-	 * @return string
-	 */
-	public function getError() {
-		return $this->errorMessage;
 	}
 
 }
