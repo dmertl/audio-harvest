@@ -33,13 +33,14 @@ class Mp3 extends AppModel {
 	protected $downloadPath;
 
 	/**
-	 * @var HarvestHttpSocket
+	 * @var FileDownloader
 	 */
-	protected $httpSocket;
+	protected $downloader;
 
 	public function __construct($id = false, $table = null, $ds = null) {
 		parent::__construct($id, $table, $ds);
 		$this->downloadPath = WWW_ROOT . 'downloads' . DS;
+		$this->downloader = new FileDownloader();
 	}
 
 	/**
@@ -67,12 +68,11 @@ class Mp3 extends AppModel {
 	 */
 	public function download($mp3) {
 		CakeLog::write('scrape', 'Downloading ' . $mp3['Mp3']['url']);
-		$downloader = new FileDownloader();
 		//Check if file exists
 		if(!$this->downloadExists($mp3['Mp3']['filename'])) {
 			try {
 				//Download mp3
-				$path = $downloader->save($mp3['Mp3']['url'], $this->downloadPath . $mp3['Mp3']['filename']);
+				$path = $this->downloader->save($mp3['Mp3']['url'], $this->downloadPath . $mp3['Mp3']['filename']);
 				//Update mp3 record
 				$mp3 = array_merge($mp3['Mp3'], $this->getDataFromFile($path)['Mp3']);
 				$mp3['Mp3']['downloaded'] = date('Y-m-d H:i:s');
@@ -102,7 +102,7 @@ class Mp3 extends AppModel {
 	 * @return bool
 	 */
 	protected function downloadExists($filename) {
-		return $filename ? file_exists(APP_PATH . 'downloads/' . $filename) : false;
+		return $filename ? file_exists($this->downloadPath . $filename) : false;
 	}
 
 	/**
@@ -117,31 +117,32 @@ class Mp3 extends AppModel {
 			'hash' => md5($data),
 			'size' => strlen($data)
 		);
-		return array_merge($mp3['Mp3'], $this->getId3Data($path));
+		return array_merge($mp3['Mp3'], $this->getId3DataFromFile($path));
 	}
 
-	public function resolveMp3Conflicts($mp3) {
-		//Check for copies, remove inferior, flag MP3 records as removed
-		//Check that file has not already been downloaded
-		if(!$this->hashExists($mp3['Mp3']['hash'])) {
-			$copy = $this->findCopy($mp3);
-			if($copy) {
-				if($mp3['Mp3']['bitrate'] > $copy['Mp3']['bitrate']) {
-					//Remove inferior quality copy
-					unlink($this->downloadPath . $copy['Mp3']['filename']);
-					//Note removal reason
-					$copy['Mp3']['error'] = 'Superior quality copy found';
-					$this->save($copy, false, array('error'));
-				} else {
-					//Remote inferior quality copy from temp location
-					unlink($tmp_name);
-					$mp3['Mp3']['error'] = 'Inferior quality copy';
-				}
+	/**
+	 * Resolve conflicts by removing lower quality copies of duplicate mp3s
+	 * @param array $new
+	 */
+	public function resolveMp3Conflicts($new) {
+		//Attempt to find copy
+		$copy = $this->findCopy($new);
+		if($copy) {
+			//Remove inferior bitrate copy
+			if($new['Mp3']['bitrate'] > $copy['Mp3']['bitrate']) {
+				$remove = $copy;
+				$remove['Mp3']['error'] = 'Superior quality copy found';
+			} else if($new['Mp3']['bitrate'] < $copy['Mp3']['bitrate']) {
+				$remove = $new;
+				$remove['Mp3']['error'] = 'Superior quality copy exists';
 			} else {
-				//TODO: Move mp3 to new location
+				$remove = $new;
+				$remove['Mp3']['error'] = 'Duplicate of ' . $copy['Mp3']['id'];
 			}
-		} else {
-			CakeLog::write('scrape', 'Found duplicate mp3 by hash ' . $mp3['Mp3']['hash'] . ' for ' . $mp3['Mp3']['id']);
+			//Remove inferior quality copy
+			unlink($this->downloadPath . $remove['Mp3']['filename']);
+			//Save error message
+			$this->save($remove, false, array('error'));
 		}
 	}
 
@@ -150,7 +151,7 @@ class Mp3 extends AppModel {
 	 * @param string $file
 	 * @return array
 	 */
-	public function getId3Data($file) {
+	public function getId3DataFromFile($file) {
 		//Defaults
 		$mp3 = array(
 			'playtime_seconds' => null,
@@ -215,102 +216,18 @@ class Mp3 extends AppModel {
 	public function findCopy($mp3) {
 		return $this->find('first', array(
 			'conditions' => array(
-				'Mp3.artist' => $mp3['Mp3']['artist'],
-				'Mp3.name' => $mp3['Mp3']['name']
+				'or' => array(
+					array(
+						'Mp3.hash' => $mp3['Mp3']['hash']
+					),
+					array(
+						'Mp3.artist' => $mp3['Mp3']['artist'],
+						'Mp3.name' => $mp3['Mp3']['name']
+					)
+				)
 			),
 			'recursive' => -1
 		));
-	}
-
-
-
-	function removeIfDuplicate($file) {
-		if(file_exists($file)) {
-			//Parse out new file name
-			$new_filename = substr($file, strrpos($file, DS) + 1);
-
-			//Get new file id3v2 info
-			$new_info = $this->Mp3->getBasicInfo($file);
-
-			if(!empty($new_info['artist'])) {
-				//Check downloads folder
-				$downloads_folder = new Folder(APP_PATH . 'downloads');
-				$download_items = $downloads_folder->read(false);
-				foreach($download_items[1] as $item) {
-					//Ignore hidden files and new file
-					if($item[0] != '.' && $item !== $new_filename) {
-						$info = $this->Mp3->getBasicInfo(APP_PATH . 'downloads' . DS . $item);
-						if($this->isDuplicate($info, $new_info)) {
-							if($this->bitrateCompare($new_info, $info) > 0) {
-								echo 'Removing ' . $item . ' because we downloaded ' . $new_filename . ' which has a better bitrate' . "\n";
-								CakeLog::write('debug', 'Removing ' . $item . ' because we downloaded ' . $new_filename . ' which has a better bitrate');
-								unlink($downloads_folder . DS . $item);
-							} else {
-								echo 'Removing ' . $new_filename . ' duplicate of ' . $item . ' in downloads' . "\n";
-								CakeLog::write('debug', 'Removing ' . $new_filename . ' duplicate of ' . $item . ' in downloads');
-								unlink($file);
-								return;
-							}
-						}
-					}
-				}
-
-				//Check iTunes library, assumes library is organized by iTunes
-				$itunes_folder = new Folder(Configure::read('Mp3.itunes_folder') . DS . $new_info['artist']);
-				$artist_items = $itunes_folder->read(false);
-				//Loop through all album folders
-				foreach($artist_items[0] as $album) {
-					$album_folder = new Folder(Configure::read('Mp3.itunes_folder') . DS . $new_info['artist'] . DS . $album);
-					$album_items = $album_folder->read(false);
-					//Loop through all songs
-					foreach($album_items[1] as $mp3) {
-						if($mp3[0] != '.') {
-							$info = $this->Mp3->getBasicInfo(Configure::read('Mp3.itunes_folder') . DS . $new_info['artist'] . DS . $album . DS . $mp3);
-							if($this->isDuplicate($info, $new_info)) {
-								if($this->bitrateCompare($new_info, $info) > 0) {
-									echo 'Keeping ' . $new_filename . ' because it has better bitrate than ' . $mp3 . ' in iTunes library' . "\n";
-									CakeLog::write('debug', 'Keeping ' . $new_filename . ' because it has better bitrate than ' . $mp3 . ' in iTunes library');
-								} else {
-									echo 'Removing ' . $new_filename . ' duplicate of ' . $mp3 . ' in iTunes library' . "\n";
-									CakeLog::write('debug', 'Removing ' . $new_filename . ' duplicate of ' . $mp3 . ' in iTunes library');
-									unlink($file);
-									return;
-								}
-							}
-						}
-					}
-				}
-			} else {
-				CakeLog::write('debug', 'Unable to get id3v2 info for ' . $new_filename);
-			}
-		}
-	}
-
-	function isDuplicate($a, $b) {
-		if(!empty($a) && !empty($b)) {
-			if(isset($a['artist']) && isset($a['title']) && isset($a['playtime_seconds']) && isset($b['artist']) && isset($b['title']) && isset($b['playtime_seconds'])) {
-				if($a['artist'] == $b['artist'] && $a['title'] == $b['title'] && $a['playtime_seconds'] == $b['playtime_seconds']) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Returns bitrate a - bitrate b if available, otherwise false
-	 * Positive = a > b
-	 * Negative = a < b
-	 * 0 = a == b
-	 * @param $a
-	 * @param $b
-	 * @return bool|int
-	 */
-	public function bitrateCompare($a, $b) {
-		if(isset($a['bitrate']) && isset($b['bitrate']) && is_numeric($a['bitrate']) && is_numeric($b['bitrate'])) {
-			return $a['bitrate'] - $b['bitrate'];
-		}
-		return false;
 	}
 
 }
