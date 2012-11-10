@@ -41,7 +41,7 @@ class FileDownloader {
 					throw new FileDownloadException('Empty response.');
 				}
 			} else {
-				throw new FileDownloadException('Request error (' . $response->code . ') ' . $response->reasonPhrase . '.');
+				throw new FileDownloadException('Request error (' . $response->code . ') ' . $response->reasonPhrase . '.', $response->code);
 			}
 		} else {
 			throw new FileDownloadException('Unable to make http request.');

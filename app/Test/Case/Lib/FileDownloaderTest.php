@@ -1,6 +1,7 @@
 <?php
 
 App::uses('FileDownloader', 'Lib');
+App::uses('TestFileDownloader', 'Test/Case/Lib');
 
 /**
  * @author David Mertl <dmertl@gmail.com>
@@ -85,36 +86,4 @@ class FileDownloaderTest extends CakeTestCase {
 		$downloader->save('', $subdir);
 	}
 
-}
-
-class TestFileDownloader extends FileDownloader {
-	public function __construct() {
-		parent::__construct();
-		$this->httpSocket = new TestHttpSocket();
-	}
-	public function getHttpSocket() {
-		return $this->httpSocket;
-	}
-}
-class TestHttpSocket {
-	public $testResponseFailure = false;
-	public $testResponseBody = 'test';
-	public $testResponseCode = 200;
-	public $testResponseReasonPhrase = 'OK';
-	public $testResponseHeaders = array();
-
-	public function get($url) {
-		if($this->testResponseFailure === false) {
-			$response = new Object();
-			$response->body = $this->testResponseBody;
-			$response->code = $this->testResponseCode;
-			$response->reasonPhrase = $this->testResponseReasonPhrase;
-			$response->response = array(
-				'header' => $this->testResponseHeaders
-			);
-			return $response;
-		} else {
-			return false;
-		}
-	}
 }

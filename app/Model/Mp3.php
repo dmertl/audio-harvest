@@ -1,7 +1,7 @@
 <?php
 
 App::uses('AppModel', 'Model');
-App::uses('HarvestHttpSocket', 'Lib');
+App::uses('FileDownloader', 'Lib');
 App::import('Vendor', 'getid3/getid3');
 
 /**
@@ -39,7 +39,11 @@ class Mp3 extends AppModel {
 
 	public function __construct($id = false, $table = null, $ds = null) {
 		parent::__construct($id, $table, $ds);
-		$this->downloadPath = WWW_ROOT . 'downloads' . DS;
+		if($path = Configure::read('download_folder')) {
+			$this->downloadPath = $path;
+		} else {
+			$this->downloadPath = WWW_ROOT . 'downloads' . DS;
+		}
 		$this->downloader = new FileDownloader();
 	}
 
@@ -69,40 +73,32 @@ class Mp3 extends AppModel {
 	public function download($mp3) {
 		CakeLog::write('scrape', 'Downloading ' . $mp3['Mp3']['url']);
 		//Check if file exists
-		if(!$this->downloadExists($mp3['Mp3']['filename'])) {
+		if(empty($mp3['Mp3']['filename']) || !$this->filenameExists($mp3['Mp3']['filename'])) {
 			try {
 				//Download mp3
-				$path = $this->downloader->save($mp3['Mp3']['url'], $this->downloadPath . $mp3['Mp3']['filename']);
+				$path = $this->downloader->save($mp3['Mp3']['url'], $this->downloadPath);
 				//Update mp3 record
-				$mp3 = array_merge($mp3['Mp3'], $this->getDataFromFile($path)['Mp3']);
+				$mp3['Mp3'] = array_merge($mp3['Mp3'], $this->getDataFromFile($path));
 				$mp3['Mp3']['downloaded'] = date('Y-m-d H:i:s');
 				if($this->save($mp3)) {
+					$mp3['Mp3']['id'] = $this->id;
 					//Remove any duplicate copies
 					$this->resolveMp3Conflicts($mp3, $path);
 				} else {
 					CakeLog::write('scrape', 'Unable to save Mp3. Data: ' . json_encode($mp3));
 				}
-			} catch(FeedResponseException $e) {
+			} catch(FileDownloadException $e) {
 				CakeLog::write('scrape', 'Unable to download mp3 from ' . $mp3['Mp3']['url'] . '. Error: ' . $e);
-				$mp3['Mp3']['error'] = $e->getCode();
+				$mp3['Mp3']['error'] = $e->getMessage();
 			}
 			//Save Mp3
-			$this->Mp3->create();
-			if(!$this->Mp3->save($mp3)) {
-				CakeLog::write('scrape', 'Error saving mp3 ' . $mp3['Mp3']['id']);
+			$this->create();
+			if(!$this->save($mp3)) {
+				CakeLog::write('scrape', 'Error saving mp3: ' . json_encode($mp3));
 			}
 		} else {
 			CakeLog::write('scrape', 'Found duplicate mp3 for ' . $mp3['Mp3']['filename'] . ' by filename');
 		}
-	}
-
-	/**
-	 * Check if a file already exists at the path specified
-	 * @param string $filename
-	 * @return bool
-	 */
-	protected function downloadExists($filename) {
-		return $filename ? file_exists($this->downloadPath . $filename) : false;
 	}
 
 	/**
@@ -111,13 +107,17 @@ class Mp3 extends AppModel {
 	 * @return array
 	 */
 	public function getDataFromFile($path) {
-		$data = file_get_contents($path);
-		$mp3['Mp3'] = array(
-			'filename' => basename($path),
-			'hash' => md5($data),
-			'size' => strlen($data)
-		);
-		return array_merge($mp3['Mp3'], $this->getId3DataFromFile($path));
+		if(file_exists($path)) {
+			$data = file_get_contents($path);
+			$mp3['Mp3'] = array(
+				'filename' => basename($path),
+				'hash' => md5($data),
+				'size' => strlen($data)
+			);
+			return array_merge($mp3['Mp3'], $this->getId3DataFromFile($path));
+		} else {
+			return array('Mp3' => array());
+		}
 	}
 
 	/**
@@ -140,7 +140,7 @@ class Mp3 extends AppModel {
 				$remove['Mp3']['error'] = 'Duplicate of ' . $copy['Mp3']['id'];
 			}
 			//Remove inferior quality copy
-			unlink($this->downloadPath . $remove['Mp3']['filename']);
+			unlink($this->downloadPath . DS . $remove['Mp3']['filename']);
 			//Save error message
 			$this->save($remove, false, array('error'));
 		}
@@ -154,7 +154,7 @@ class Mp3 extends AppModel {
 	public function getId3DataFromFile($file) {
 		//Defaults
 		$mp3 = array(
-			'playtime_seconds' => null,
+			'length' => null,
 			'bitrate' => null,
 			'artist' => null,
 			'name' => null,
@@ -200,6 +200,15 @@ class Mp3 extends AppModel {
 	}
 
 	/**
+	 * Check if an mp3 already exists by filename
+	 * @param string $filename
+	 * @return bool
+	 */
+	public function filenameExists($filename) {
+		return $this->find('count', array('conditions' => array('Mp3.filename' => $filename))) > 0;
+	}
+
+	/**
 	 * Check if mp3 hash already exists in the database
 	 * @param string $hash Hash of mp3 data
 	 * @return bool
@@ -214,18 +223,28 @@ class Mp3 extends AppModel {
 	 * @return array
 	 */
 	public function findCopy($mp3) {
-		return $this->find('first', array(
-			'conditions' => array(
-				'or' => array(
-					array(
-						'Mp3.hash' => $mp3['Mp3']['hash']
-					),
-					array(
-						'Mp3.artist' => $mp3['Mp3']['artist'],
-						'Mp3.name' => $mp3['Mp3']['name']
+		$conditions = array();
+		if(!empty($mp3['Mp3']['artist']) && !empty($mp3['Mp3']['name'])) {
+			$conditions = array(
+				'Mp3.artist' => $mp3['Mp3']['artist'],
+				'Mp3.name' => $mp3['Mp3']['name']
+			);
+		}
+		if(!empty($mp3['Mp3']['hash'])) {
+			if(!empty($conditions)) {
+				$conditions = array(
+					'or' => array(
+						$conditions,
+						array('Mp3.hash' => $mp3['Mp3']['hash'])
 					)
-				)
-			),
+				);
+			} else {
+				$conditions = array('Mp3.hash' => $mp3['Mp3']['hash']);
+			}
+		}
+		$conditions['Mp3.id !='] = $mp3['Mp3']['id'];
+		return $this->find('first', array(
+			'conditions' => array($conditions),
 			'recursive' => -1
 		));
 	}
