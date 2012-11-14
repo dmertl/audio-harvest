@@ -25,7 +25,7 @@ class HarvestHttpSocket extends HttpSocket {
 	 */
 	public function get($uri = null, $query = array(), $request = array()) {
 		$this->last_response = parent::get($uri, $query, $request);
-		$this->last_headers = $this->last_response->response['header'];
+		$this->last_headers = $this->last_response->headers;
 		if($this->last_response->code === '200') {
 			return $this->last_response->body;
 		} else {

@@ -4,16 +4,36 @@ App::uses('AppShell', 'Console/Command');
 
 /**
  * @author David Mertl <dmertl@gmail.com>
+ * @property Feed $Feed
  */
 class ScrapeShell extends AppShell {
 
-	var $uses = array('Feed');
+	var $uses = array('Feed', 'FeedItem', 'Link', 'Mp3');
 
 	public function main() {
 //		$this->Feeds->execute();
 //		$this->FeedItems->execute();
 //		$this->Links->execute();
 //		$this->Mp3s->execute();
+	}
+
+	public function feed() {
+		if(!empty($this->args[0])) {
+			$feed = $this->Feed->find('first', array(
+					'conditions' => array('Feed.title' => $this->args[0]),
+					'recursive' => -1
+				)
+			);
+			$this->Feed->scrape($feed);
+		} else {
+			$this->Feed->scrapeAll();
+		}
+	}
+
+	public function getOptionParser() {
+		$parser = parent::getOptionParser();
+		$parser->addArgument('item', array('help' => 'A specific item to scrape'));
+		return $parser;
 	}
 
 }

@@ -42,7 +42,7 @@ class Mp3 extends AppModel {
 		if($path = Configure::read('download_folder')) {
 			$this->downloadPath = $path;
 		} else {
-			$this->downloadPath = WWW_ROOT . 'downloads' . DS;
+			$this->downloadPath = WWW_ROOT . 'files' . DS . 'downloads' . DS;
 		}
 		$this->downloader = new FileDownloader();
 	}
