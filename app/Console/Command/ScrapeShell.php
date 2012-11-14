@@ -24,9 +24,30 @@ class ScrapeShell extends AppShell {
 					'recursive' => -1
 				)
 			);
-			$this->Feed->scrape($feed);
+			if($feed) {
+				$this->Feed->scrape($feed);
+			} else {
+				$this->out('Feed "' . $this->args[0] . '" not found.');
+			}
 		} else {
 			$this->Feed->scrapeAll();
+		}
+	}
+
+	public function feed_item() {
+		if(!empty($this->args[0])) {
+			$feed_item = $this->FeedItem->find('first', array(
+					'conditions' => array('FeedItem.id' => $this->args[0]),
+					'recursive' => -1
+				)
+			);
+			if($feed_item) {
+				$this->FeedItem->scrape($feed_item);
+			} else {
+				$this->out('FeedItem "' . $this->args[0] . '" not found.');
+			}
+		} else {
+			$this->FeedItem->scrapeAll();
 		}
 	}
 
