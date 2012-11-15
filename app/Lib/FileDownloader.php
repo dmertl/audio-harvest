@@ -34,7 +34,7 @@ class FileDownloader {
 		$this->lastResponse = null;
 		if($response = $this->httpSocket->get($url)) {
 			$this->lastResponse = $response;
-			if($response->code === 200) {
+			if($response->code === '200') {
 				if(!empty($response->body)) {
 					return $this->saveResponseToFile($response, $save_path, $url);
 				} else {
@@ -87,7 +87,7 @@ class FileDownloader {
 	 * @return string|bool
 	 */
 	protected function determineFilename($url, $response) {
-		if($filename = $this->getFilenameFromHeader($response->response['header'])) {
+		if($filename = $this->getFilenameFromHeaders($response->headers)) {
 			return $filename;
 		} else {
 			return $this->getFilenameFromUrl($url);
@@ -99,7 +99,7 @@ class FileDownloader {
 	 * @param array $headers Array of headers from request
 	 * @return string|bool
 	 */
-	protected function getFilenameFromHeader($headers) {
+	protected function getFilenameFromHeaders($headers) {
 		if(isset($headers['Content-Disposition'])) {
 			$cd = $this->parseContentDisposition($headers['Content-Disposition']);
 			if(isset($cd['params']['filename'])) {

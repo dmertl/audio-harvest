@@ -63,7 +63,7 @@ class FileDownloaderTest extends CakeTestCase {
 	public function testSaveNon200Response() {
 		$this->expectException('FileDownloadException', 'Request error (404) Not Found.');
 		$downloader = new TestFileDownloader();
-		$downloader->getHttpSocket()->testResponseCode = 404;
+		$downloader->getHttpSocket()->testResponseCode = '404';
 		$downloader->getHttpSocket()->testResponseReasonPhrase = 'Not Found';
 		$downloader->save('', '');
 	}

@@ -42,7 +42,7 @@ class Mp3 extends AppModel {
 		if($path = Configure::read('download_folder')) {
 			$this->downloadPath = $path;
 		} else {
-			$this->downloadPath = WWW_ROOT . 'files' . DS . 'downloads' . DS;
+			$this->downloadPath = WWW_ROOT . 'files' . DS . 'downloads';
 		}
 		$this->downloader = new FileDownloader();
 	}
@@ -51,7 +51,7 @@ class Mp3 extends AppModel {
 	 * Download all undownloaded mp3s
 	 */
 	public function downloadAll() {
-		$mp3s = $this->Mp3->find('all', array(
+		$mp3s = $this->find('all', array(
 				'conditions' => array(
 					'Mp3.downloaded' => null,
 					'Mp3.error' => null
@@ -72,32 +72,27 @@ class Mp3 extends AppModel {
 	 */
 	public function download($mp3) {
 		CakeLog::write('scrape', 'Downloading ' . $mp3['Mp3']['url']);
-		//Check if file exists
-		if(empty($mp3['Mp3']['filename']) || !$this->filenameExists($mp3['Mp3']['filename'])) {
-			try {
-				//Download mp3
-				$path = $this->downloader->save($mp3['Mp3']['url'], $this->downloadPath);
-				//Update mp3 record
-				$mp3['Mp3'] = array_merge($mp3['Mp3'], $this->getDataFromFile($path));
-				$mp3['Mp3']['downloaded'] = date('Y-m-d H:i:s');
-				if($this->save($mp3)) {
-					$mp3['Mp3']['id'] = $this->id;
-					//Remove any duplicate copies
-					$this->resolveMp3Conflicts($mp3, $path);
-				} else {
-					CakeLog::write('scrape', 'Unable to save Mp3. Data: ' . json_encode($mp3));
-				}
-			} catch(FileDownloadException $e) {
-				CakeLog::write('scrape', 'Unable to download mp3 from ' . $mp3['Mp3']['url'] . '. Error: ' . $e);
-				$mp3['Mp3']['error'] = $e->getMessage();
+		try {
+			//Download mp3
+			$path = $this->downloader->save($mp3['Mp3']['url'], $this->downloadPath);
+			//Update mp3 record
+			$mp3['Mp3'] = array_merge($mp3['Mp3'], $this->getDataFromFile($path));
+			$mp3['Mp3']['downloaded'] = date('Y-m-d H:i:s');
+			if($this->save($mp3)) {
+				$mp3['Mp3']['id'] = $this->id;
+				//Remove any duplicate copies
+				$this->resolveMp3Conflicts($mp3, $path);
+			} else {
+				CakeLog::write('scrape', 'Unable to save Mp3. Data: ' . json_encode($mp3));
 			}
-			//Save Mp3
-			$this->create();
-			if(!$this->save($mp3)) {
-				CakeLog::write('scrape', 'Error saving mp3: ' . json_encode($mp3));
-			}
-		} else {
-			CakeLog::write('scrape', 'Found duplicate mp3 for ' . $mp3['Mp3']['filename'] . ' by filename');
+		} catch(FileDownloadException $e) {
+			CakeLog::write('scrape', 'Unable to download mp3 from ' . $mp3['Mp3']['url'] . '. Error: ' . $e);
+			$mp3['Mp3']['error'] = $e->getMessage();
+		}
+		//Save Mp3
+		$this->create();
+		if(!$this->save($mp3)) {
+			CakeLog::write('scrape', 'Error saving mp3: ' . json_encode($mp3));
 		}
 	}
 
@@ -197,15 +192,6 @@ class Mp3 extends AppModel {
 		}
 
 		return $mp3;
-	}
-
-	/**
-	 * Check if an mp3 already exists by filename
-	 * @param string $filename
-	 * @return bool
-	 */
-	public function filenameExists($filename) {
-		return $this->find('count', array('conditions' => array('Mp3.filename' => $filename))) > 0;
 	}
 
 	/**

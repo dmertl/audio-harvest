@@ -5,6 +5,9 @@ App::uses('AppShell', 'Console/Command');
 /**
  * @author David Mertl <dmertl@gmail.com>
  * @property Feed $Feed
+ * @property FeedItem $FeedItem
+ * @property Link $Link
+ * @property Mp3 $Mp3
  */
 class ScrapeShell extends AppShell {
 
@@ -35,20 +38,15 @@ class ScrapeShell extends AppShell {
 	}
 
 	public function feed_item() {
-		if(!empty($this->args[0])) {
-			$feed_item = $this->FeedItem->find('first', array(
-					'conditions' => array('FeedItem.id' => $this->args[0]),
-					'recursive' => -1
-				)
-			);
-			if($feed_item) {
-				$this->FeedItem->scrape($feed_item);
-			} else {
-				$this->out('FeedItem "' . $this->args[0] . '" not found.');
-			}
-		} else {
-			$this->FeedItem->scrapeAll();
-		}
+		$this->FeedItem->scrapeAll();
+	}
+
+	public function link() {
+		$this->Link->scrapeAll();
+	}
+
+	public function mp3() {
+		$this->Mp3->downloadAll();
 	}
 
 	public function getOptionParser() {

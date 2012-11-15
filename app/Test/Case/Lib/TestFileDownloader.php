@@ -20,7 +20,7 @@ class TestFileDownloader extends FileDownloader {
 class TestHttpSocket {
 	public $testResponseFailure = false;
 	public $testResponseBody = 'test';
-	public $testResponseCode = 200;
+	public $testResponseCode = '200';
 	public $testResponseReasonPhrase = 'OK';
 	public $testResponseHeaders = array();
 	public $testWasGetCalled = false;
